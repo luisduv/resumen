@@ -1,0 +1,196 @@
+.App {
+  background-color: #3BA489;
+  width: 1800px;
+  padding: none;
+  margin-left: 50px;
+   margin-right: 5px;
+   margin-top: 60px;
+    overflow-x: hidden;
+}
+
+.menu{
+ 
+  display: flex;
+  justify-content: flex-start ;
+  position: absolute;
+}
+
+
+
+
+#circulo{
+  margin-top: 20%;
+  margin-left: 70px;
+  position: relative;
+  box-sizing: box-shadow;
+  height: 180px;
+  width: 180px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border-width: 100px;
+  border-style: solid;
+  border-color: grey;
+}
+
+#texto{
+  top: -65px;
+  left: 28px;
+  margin-left: -65px;
+  transform: rotate(0deg);
+  font-size: medium;
+  color: gainsboro;
+}
+
+.letra2{
+  margin-left: 14px ;
+}
+
+
+
+.colorgris{
+color: grey;
+}
+
+.letra{
+  margin-left: 70px;
+  
+}
+
+.letrapequenaabajo{
+  margin-left: 88%;
+   font-size:small;
+    color: gray;
+}
+
+.cabeceraderecha{
+  background-color: gainsboro ;
+   font-size: medium;
+    height: 50px;
+     margin-top: 17%;
+      size: 27;
+       font-family: Verdana, Geneva, Tahoma, sans-serif;
+       margin-left: 14px;
+}
+
+
+
+.ul{
+  position: relative;
+}
+
+
+.linea {
+  position: absolute;
+  height: 93px;
+  width: 2px;
+  right: 538px;
+  background-color: grey;
+  top: 22px;
+  border-radius: 50px;
+
+}
+
+.bordesborroso{
+  box-shadow: 15px 15px 20px  #29806A;
+}
+
+.linea2 {
+  position: absolute;
+  height: 60px;
+  width: 2px;
+  right: 538px;
+  background-color: grey;
+  top: 50px;
+  border-radius: 50px;
+
+}
+
+.letrapequena2{
+  font-size:small;
+   line-height: 120%;
+}
+
+.letrapequenaderecha{
+  margin-left: 87%;
+   font-size:small;
+    line-height: 120%;
+     color: gray;
+}
+
+.letrasmal{
+  font-size: small;
+}
+
+.divicionletra120{
+  line-height: 115%;
+}
+
+
+
+
+
+.colorazul{
+  color:lightseagreen;
+}
+
+.colorgris{
+  color: grey;
+}
+
+ .spa{
+    position: absolute;
+    width: 50px;
+    left: -14px;
+    top: -30px;
+    transform: rotate(0deg);
+    color: #DEDFD8;
+  }
+
+
+
+  .bordesborroso{
+    box-shadow: 5px 5px 20px 10px #29806A;
+  }
+
+  .boxchawycolorverde{
+    box-shadow: 26px -10px 20px 10px  #29806A;
+  }
+
+  .cabeza{
+    width: 4.5rem;
+  }
+
+  
+
+
+.row{
+  display: flex;
+  justify-content: center;
+  width: 1300px;
+  margin-bottom: 70px;
+  
+
+}
+
+
+
+.derech{
+  margin-right: 70px;
+}
+
+
+.col-md-3{
+  background-color: white;
+  
+ 
+}
+
+.col-md-6{
+  background-color:white;
+}
+
+/* ------------ */
+
+
+ 
+
