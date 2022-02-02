@@ -199,7 +199,7 @@ export default class Pagina extends Component{
                                  <label className="colorgris normal">Employe</label>
                              <label className="letrapequenaderecha">from-unit</label><br></br>
                              <p  className="colorgris letrapequena2 parrafo">{this.state.form.position}{/* Fernando was inspired to create the tool when his sister asked him for help with her resume. After he was unable to find an online tool to assist her */}</p>
-                             
+                             <br></br><br></br>
                              </div>
                              <li className="colorazul"><h5 className="colorgris">Position</h5></li>
                              
@@ -221,12 +221,12 @@ export default class Pagina extends Component{
                                <div className="linea2">
                                
                                </div>
-                               <li className="colorazul"><h5 className="colorgris">Degree</h5></li>
-                               <label className="parrafo colorgris"> {this.state.form.education}{/* School */} </label><label className="letrapequenaabajo" >from-unit</label>
+                               <li className="colorazul"><h5 className="colorgris">Degree</h5></li><label className="letrapequenaabajo " >from-unit</label>
+                               <p className="parrafo colorgris"> {this.state.form.education}{/* School */} </p>
                                {/* <br><br> */}
-                               
-                               <li className="colorazul"><h5 className="colorgris">Degree</h5></li>
-                               <label className="colorgris parrafo"> {this.state.form.education2}{/* School */}</label><label className="letrapequenaabajo">from-unit</label>
+                               <br></br><br></br>
+                               <li className="colorazul"><h5 className="colorgris">Degree</h5></li><label className="letrapequenaabajo ">from-unit</label>
+                               <p className="parrafo colorgris "> {this.state.form.education2}{/* School */}</p>
                                
                          </ul>
                         
