@@ -32,11 +32,13 @@ export default class Pagina extends Component{
      openNav=()=>{
         document.getElementById("sideNavigation").style.width = "400px";
         document.getElementById("main").style.marginLeft = "400px";
+        document.getElementById("rof").style.filter = "blur(6px)";
       }
 
        closeNav=()=> {
         document.getElementById("sideNavigation").style.width = "0";
         document.getElementById("main").style.marginLeft = "0";
+        document.getElementById("rof").style.filter=" blur(none)";
       } 
 
 
@@ -139,7 +141,7 @@ export default class Pagina extends Component{
  
 </div>
 
-   <div className='row '>
+   <div className='row ' id="rof">
    
        <div className='col-md-3 '>
          
