@@ -68,14 +68,14 @@ export default class Pagina extends Component{
                     </svg>
                 </button> */}
 
-        <div id="sideNavigation" className="sidenav">
-               <a href="javascript:void(0)" className="closebtn" onClick={()=>this.closeNav()} >&times;</a>
+               <div id="sideNavigation" className="sidenav">
+                 <a href="javascript:void(0)" className="closebtn" onClick={()=>this.closeNav()} >&times;</a>
                <div className='conteiner'>
 
-               <form id="formulario"  className="form-grup">
+               <form id="formulario"  className="form-control">
 
                <label for="profile" className='letraBlanco'>Profile</label><br></br>
-               <input onChange={this.handleChange} name="profile" id="profile" className="form-control " placeholder="Perfil" type="text"></input><br></br>
+               <input onChange={this.handleChange} name="profile" id="profile" className="form-control col-xs-4" placeholder="Perfil" type="text"></input><br></br>
 
                <label for="BirthDate" className='letraBlanco'>Birth Date</label><br></br>
                <input onChange={this.handleChange} name="BirthDate" id="BirthDate" className="form-control " placeholder="fecha Cumpleaños" type="date"></input><br></br>
@@ -122,8 +122,8 @@ export default class Pagina extends Component{
              </div>
            
              <nav className="topnav">
-               <a href="#" onClick={()=>this.openNav()}  >
-                 <svg width="30" height="30" id="icoOpen">
+               <a href="#" className="raya" onClick={()=>this.openNav()}  >
+                 <svg width="26" height="30"  id="icoOpen">
                      <path d="M0,5 30,5" stroke="#000" stroke-width="5"/>
                      <path d="M0,14 30,14" stroke="#000" stroke-width="5"/>
                      <path d="M0,23 30,23" stroke="#000" stroke-width="5"/>
