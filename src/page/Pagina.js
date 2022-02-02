@@ -168,9 +168,9 @@ export default class Pagina extends Component{
  
                  <br></br><br></br>
                   <b className="letra letrasmal"> CONCTATO</b><br></br><br></br>
-                 <label  className="colorgris letra fa fa-envelope-o letrasmal divicionletra120"> {this.state.form.email} {/* Enter your email */}</label><br></br><br></br>
-                 <label  className="colorgris letra  fa fa-phone letrasmal divicionletra120"> {this.state.form.phone}{/* Enter your phone */}</label><br></br><br></br>
-                 <label  className="colorgris letra  fa fa-globe letrasmal divicionletra120"> {this.state.form.address2}{/* Enter your Address */}</label>
+                 <label  className="colorgris letra fa fa-envelope-o letrasmal divicionletra120 parrafo"> {this.state.form.email} {/* Enter your email */}</label><br></br><br></br>
+                 <label  className="colorgris letra  fa fa-phone letrasmal divicionletra120 parrafo"> {this.state.form.phone}{/* Enter your phone */}</label><br></br><br></br>
+                 <label  className="colorgris letra  fa fa-globe letrasmal divicionletra120 parrafo"> {this.state.form.address2}{/* Enter your Address */}</label>
 
                  <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
 
