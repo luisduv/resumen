@@ -11,6 +11,18 @@ export default class Pagina extends Component{
                 
                 form:{
                     profile:'',
+                    BirthDate:'',
+                    nacionalidad:'',
+                    address:'',
+                    email:'',
+                    phone:'',
+                    address2:'',
+                    name:'',
+                    position:'',
+                    position2:'',
+                    education:'',
+                    education2:'',
+
                 }
                 
             }
@@ -31,18 +43,14 @@ export default class Pagina extends Component{
       handleChange=e=>{
         this.setState({
             form:{
-                /* ...this.state.form, */
+                 ...this.state.form, 
                 [e.target.name]: e.target.value,
             }
         });
       }
 
 
-      aplicar=()=>{
-        var valorNuevo = {...this.state.form};
-        
-      }
-
+    
 
 
 
@@ -68,6 +76,45 @@ export default class Pagina extends Component{
 
                <label for="profile" className='letraBlanco'>Profile</label><br></br>
                <input onChange={this.handleChange} name="profile" id="profile" className="form-control " placeholder="Perfil" type="text"></input><br></br>
+
+               <label for="BirthDate" className='letraBlanco'>Birth Date</label><br></br>
+               <input onChange={this.handleChange} name="BirthDate" id="BirthDate" className="form-control " placeholder="fecha Cumpleaños" type="date"></input><br></br>
+
+               <label for="nacionalidad" className='letraBlanco'>Nacionalidad</label><br></br>
+               <input onChange={this.handleChange} name="nacionalidad" id="nacionalidad" className="form-control " placeholder="Nacionalidad" type="text"></input><br></br>
+
+               <label for="address" className='letraBlanco'>Address</label><br></br>
+               <input onChange={this.handleChange} name="address" id="address" className="form-control " placeholder="Address" type="text"></input><br></br>
+
+               <label for="email" className='letraBlanco'>Email</label><br></br>
+               <input onChange={this.handleChange} name="email" id="email" className="form-control " placeholder="Email" type="email"></input><br></br>
+
+               <label for="phone" className='letraBlanco'>Phone</label><br></br>
+               <input onChange={this.handleChange} name="phone" id="phone" className="form-control " placeholder="Phone" type="number"></input><br></br>
+
+               <label for="address2" className='letraBlanco'>Address</label><br></br>
+               <input onChange={this.handleChange} name="address2" id="address2" className="form-control " placeholder="Address" type="text"></input><br></br>
+
+               <label for="name" className='letraBlanco'>Name</label><br></br>
+               <input onChange={this.handleChange} name="name" id="name" className="form-control " placeholder="Name" type="text"></input><br></br>
+
+               <label for="position" className='letraBlanco'>Position Employe</label><br></br>
+               <input onChange={this.handleChange} name="position" id="position" className="form-control " placeholder="Position" type="text"></input><br></br>
+
+               <label for="position2" className='letraBlanco'>Position Employe</label><br></br>
+               <input onChange={this.handleChange} name="position2" id="position2" className="form-control " placeholder="Position" type="text"></input><br></br>
+
+               <label for="education" className='letraBlanco'>Education</label><br></br>
+               <input onChange={this.handleChange} name="education" id="education" className="form-control " placeholder="Education" type="text"></input><br></br>
+
+               <label for="education2" className='letraBlanco'>Education</label><br></br>
+               <input onChange={this.handleChange} name="education2" id="education2" className="form-control " placeholder="Education" type="text"></input><br></br>
+
+
+
+
+
+
 
                </form>
                
@@ -106,24 +153,24 @@ export default class Pagina extends Component{
             
             <br></br><br></br>
                   <b className="letrasmal letra2 letra">PROFILE </b><br></br>
-                 <p id="pprofile"  className="colorgris letra letrasmal divicionletra120"> {this.state.form.profile}{/* Some representative placeholder <br></br>brcontent for the three columns<br></br> of text below the carousel. This<br></br> is the first column. */}</p><br></br>
+                 <p id="pprofile"  className="parrafo colorgris letra letrasmal divicionletra120"> {this.state.form.profile}{/* Some representative placeholder <br></br>brcontent for the three columns<br></br> of text below the carousel. This<br></br> is the first column. */}</p><br></br>
              
                  <b className="letrasmal letra">PERSONAL DETAIL</b><br></br><br></br>
  
                  <h5 className="colorazul letralarge letra"><b>Birth date</b></h5>
-                 <label className="letra colorgris letrasmal divicionletra120" >Enter your birth date</label>
+                 <label className="letra colorgris letrasmal divicionletra120" > {this.state.form.BirthDate}{/* Enter your birth date */}</label>
  
                  <h5   className="colorazul letralarge letra"><b>nacionalidad</b> </h5>
-                 <label className="letra colorgris letrasmal divicionletra120" >Enter your nacionalidad</label>
+                 <label className="letra colorgris letrasmal divicionletra120 parrafo" > {this.state.form.nacionalidad}{/* Enter your nacionalidad */}</label>
  
                  <h5  className="letra colorazul letralarge"><b> Address</b></h5>
-                 <label className="letra colorgris letrasmal divicionletra120">Enter your Address</label>
+                 <label className="letra colorgris letrasmal divicionletra120 parrafo"> {this.state.form.address}{/* Enter your Address */}</label>
  
                  <br></br><br></br>
                   <b className="letra letrasmal"> CONCTATO</b><br></br><br></br>
-                 <label  className="colorgris letra fa fa-envelope-o letrasmal divicionletra120"> Enter your email</label><br></br><br></br>
-                 <label  className="colorgris letra  fa fa-phone letrasmal divicionletra120"> Enter your phone</label><br></br><br></br>
-                 <label  className="colorgris letra  fa fa-globe letrasmal divicionletra120"> Enter your Address</label>
+                 <label  className="colorgris letra fa fa-envelope-o letrasmal divicionletra120"> {this.state.form.email} {/* Enter your email */}</label><br></br><br></br>
+                 <label  className="colorgris letra  fa fa-phone letrasmal divicionletra120"> {this.state.form.phone}{/* Enter your phone */}</label><br></br><br></br>
+                 <label  className="colorgris letra  fa fa-globe letrasmal divicionletra120"> {this.state.form.address2}{/* Enter your Address */}</label>
 
                  <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
 
@@ -136,7 +183,7 @@ export default class Pagina extends Component{
 
 
        <div className='derech'>
-                     <div className="container fluid letra2 cabeceraderecha" ><h1>Luis Paulino</h1></div>
+                     <div className="container fluid letra2 cabeceraderecha" ><h1>{this.state.form.name}{/* Luis Paulino */}</h1></div>
                      <h5 className="letra2 colorgris">YOUR PROFECCIONAL OR SPECIALITY</h5><br></br><br></br><br></br><br></br><br></br>
          
                      <div>
@@ -151,7 +198,7 @@ export default class Pagina extends Component{
                              <div className="divicionletra120" >
                                  <label className="colorgris normal">Employe</label>
                              <label className="letrapequenaderecha">from-unit</label><br></br>
-                             <p  className="colorgris letrapequena2">Fernando was inspired to create the tool when his sister asked him for help with her resume. After he was unable to find an online tool to assist her</p>
+                             <p  className="colorgris letrapequena2 parrafo">{this.state.form.position}{/* Fernando was inspired to create the tool when his sister asked him for help with her resume. After he was unable to find an online tool to assist her */}</p>
                              
                              </div>
                              <li className="colorazul"><h5 className="colorgris">Position</h5></li>
@@ -160,7 +207,7 @@ export default class Pagina extends Component{
                              <div className="divicionletra120" >
                                  <label className="colorgris normal">Employe</label>
                              <label className="letrapequenaderecha">from-unit</label><br></br>
-                             <p  className="colorgris letrapequena2">Fernando was inspired to create the tool when his sister asked him for help with her resume. After he was unable to find an online tool to assist her</p>
+                             <p  className="colorgris letrapequena2 parrafo">{this.state.form.position2}{/* Fernando was inspired to create the tool when his sister asked him for help with her resume. After he was unable to find an online tool to assist her */}</p>
                              
                              </div>
                          </ul>
@@ -175,11 +222,11 @@ export default class Pagina extends Component{
                                
                                </div>
                                <li className="colorazul"><h5 className="colorgris">Degree</h5></li>
-                               <label>School </label><label className="letrapequenaabajo" >from-unit</label>
+                               <label className="parrafo colorgris"> {this.state.form.education}{/* School */} </label><label className="letrapequenaabajo" >from-unit</label>
                                {/* <br><br> */}
                                
                                <li className="colorazul"><h5 className="colorgris">Degree</h5></li>
-                               <label className="colorgris">School</label><label className="letrapequenaabajo">from-unit</label>
+                               <label className="colorgris parrafo"> {this.state.form.education2}{/* School */}</label><label className="letrapequenaabajo">from-unit</label>
                                
                          </ul>
                         
