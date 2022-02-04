@@ -19,7 +19,6 @@ export default class Pagina extends Component{
                     phone:'',
                     address2:'',
                     name:'',
-                    position:'',
                     position2:'',
                     education:'',
                     education2:'',
@@ -77,6 +76,12 @@ export default class Pagina extends Component{
           console.log(data)
         }
 
+        limpiartodo=()=>{
+            var lista = this.state.data;
+            lista.splice(0, lista.length);/* shift(data) */
+            this.setState({data:lista})
+        }
+
 
     
 
@@ -125,23 +130,11 @@ export default class Pagina extends Component{
 
                <label htmlFor="name" className='letraBlanco'>Name</label><br></br>
                <input onChange={this.handleChange} name="name" id="name" className="form-control " placeholder="Name" type="text"></input><br></br>
-
-               <label htmlFor="position" className='letraBlanco'>Position Employe</label><br></br>
-               <input onChange={this.handleChange} name="position" id="position" className="form-control " placeholder="Position" type="text"></input><br></br>
-
-               <label htmlFor="position2" className='letraBlanco'>Position Employe</label><br></br>
-               <input onChange={this.handleChange} name="position2" id="position2" className="form-control " placeholder="Position" type="text"></input><br></br>
-
-               <label htmlFor="education" className='letraBlanco'>Education</label><br></br>
-               <input onChange={this.handleChange} name="education" id="education" className="form-control " placeholder="Education" type="text"></input><br></br>
-
-               <label htmlFor="education2" className='letraBlanco'>Education</label><br></br>
-               <input onChange={this.handleChange} name="education2" id="education2" className="form-control " placeholder="Education" type="text"></input><br></br>
-
-                <label htmlFor="profecionPrueba" className='letraBlanco'>prueba profecion</label><br></br>
+                <hr></hr>
+               <label htmlFor="profecionPrueba" className='letraBlanco'>prueba profecion</label><br></br>
                 <input onChange={this.handleChange} name="profecionPrueba" id="profecionPrueba" className=" " placeholder="profecionPrueba" type="text"></input>
                 <button onClick={()=>this.guardar()}>guardar</button>
-                <button>limpiar</button>
+                <button onClick={()=>this.limpiartodo()}>limpiar</button>
 
                     <table class="table">
                         <thead>
@@ -154,6 +147,8 @@ export default class Pagina extends Component{
                         {this.state.data.map((e)=>(
                                     <tr>
                                             <td>{e.profecionPrueba}</td>
+                                            <td><button className="btn btn-danger">eliminar</button></td>
+
                                     </tr>
 
                                   ))}
@@ -161,6 +156,16 @@ export default class Pagina extends Component{
                             
                         </tbody>
                     </table>
+ 
+               <label htmlFor="position2" className='letraBlanco'>Position Employe</label><br></br>
+               <input onChange={this.handleChange} name="position2" id="position2" className="form-control " placeholder="Position" type="text"></input><br></br>
+
+               <label htmlFor="education" className='letraBlanco'>Education</label><br></br>
+               <input onChange={this.handleChange} name="education" id="education" className="form-control " placeholder="Education" type="text"></input><br></br>
+
+               <label htmlFor="education2" className='letraBlanco'>Education</label><br></br>
+               <input onChange={this.handleChange} name="education2" id="education2" className="form-control " placeholder="Education" type="text"></input><br></br>
+
 
                </form>
                

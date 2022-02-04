@@ -164,6 +164,8 @@ color: grey;
     width: 4.5rem;
   }
 
+ 
+
   .borroso{
     filter: blur(6px)
   }
