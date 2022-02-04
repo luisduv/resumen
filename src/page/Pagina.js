@@ -1,13 +1,14 @@
 import React,{Component} from "react";
 
 
-
+const data = [{profecionPrueba:''}]
 
 export default class Pagina extends Component{
 
     constructor(props){
         super(props);
             this.state={
+                data:data,
                 
                 form:{
                     profile:'',
@@ -22,7 +23,11 @@ export default class Pagina extends Component{
                     position2:'',
                     education:'',
                     education2:'',
+            
 
+                },
+                tab:{
+                    profecionPrueba:''
                 },
                  menuOpen:false
             }
@@ -30,10 +35,10 @@ export default class Pagina extends Component{
 
     
      openNav=()=>{
-         
+         //borroso pantalla la primera fila
          document.getElementById("fill").style.filter = "blur(6px)";
          document.getElementById("sideNavigation").style.width = "400px";
-         document.getElementById("main").style.marginLeft = "400px"; 
+         /* document.getElementById("main").style.marginLeft = "400px";  */
         
 
       }
@@ -41,7 +46,7 @@ export default class Pagina extends Component{
        closeNav=()=> {
         document.getElementById("fill").style.filter = "blur(0px)";
         document.getElementById("sideNavigation").style.width = "0";
-        document.getElementById("main").style.marginLeft = "0";
+        /* document.getElementById("main").style.marginLeft = "0"; */
       } 
 
 
@@ -50,9 +55,27 @@ export default class Pagina extends Component{
             form:{
                  ...this.state.form, 
                 [e.target.name]: e.target.value,
-            }
+            },
+
+            tab:{
+                ...this.state.tab, 
+               [e.target.name]: e.target.value,
+           }
+            
+
+
         });
       }
+
+      guardar=()=>{
+          var input = document.getElementById('profecionPrueba').value="";
+          React.createElement('th',{})
+          var valorNuevo = {...this.state.tab};
+          var lista = this.state.data;
+          lista.push(valorNuevo);
+          this.setState({data:lista/* divInsertar:false */});
+          console.log(data)
+        }
 
 
     
@@ -79,47 +102,65 @@ export default class Pagina extends Component{
 
                <form id="formulario"  className="form-control">
 
-               <label for="profile" className='letraBlanco'>Profile</label><br></br>
+               <label htmlFor="profile" className='letraBlanco'>Profile</label><br></br>
                <input onChange={this.handleChange} name="profile" id="profile" className="form-control col-xs-4" placeholder="Perfil" type="text"></input><br></br>
 
-               <label for="BirthDate" className='letraBlanco'>Birth Date</label><br></br>
+               <label htmlFor="BirthDate" className='letraBlanco'>Birth Date</label><br></br>
                <input onChange={this.handleChange} name="BirthDate" id="BirthDate" className="form-control " placeholder="fecha Cumpleaños" type="date"></input><br></br>
 
-               <label for="nacionalidad" className='letraBlanco'>Nacionalidad</label><br></br>
+               <label htmlFor="nacionalidad" className='letraBlanco'>Nacionalidad</label><br></br>
                <input onChange={this.handleChange} name="nacionalidad" id="nacionalidad" className="form-control " placeholder="Nacionalidad" type="text"></input><br></br>
 
-               <label for="address" className='letraBlanco'>Address</label><br></br>
+               <label htmlFor="address" className='letraBlanco'>Address</label><br></br>
                <input onChange={this.handleChange} name="address" id="address" className="form-control " placeholder="Address" type="text"></input><br></br>
 
-               <label for="email" className='letraBlanco'>Email</label><br></br>
+               <label htmlFor="email" className='letraBlanco'>Email</label><br></br>
                <input onChange={this.handleChange} name="email" id="email" className="form-control " placeholder="Email" type="email"></input><br></br>
 
-               <label for="phone" className='letraBlanco'>Phone</label><br></br>
+               <label htmlFor="phone" className='letraBlanco'>Phone</label><br></br>
                <input onChange={this.handleChange} name="phone" id="phone" className="form-control " placeholder="Phone" type="number"></input><br></br>
 
-               <label for="address2" className='letraBlanco'>Address</label><br></br>
+               <label htmlFor="address2" className='letraBlanco'>Address</label><br></br>
                <input onChange={this.handleChange} name="address2" id="address2" className="form-control " placeholder="Address" type="text"></input><br></br>
 
-               <label for="name" className='letraBlanco'>Name</label><br></br>
+               <label htmlFor="name" className='letraBlanco'>Name</label><br></br>
                <input onChange={this.handleChange} name="name" id="name" className="form-control " placeholder="Name" type="text"></input><br></br>
 
-               <label for="position" className='letraBlanco'>Position Employe</label><br></br>
+               <label htmlFor="position" className='letraBlanco'>Position Employe</label><br></br>
                <input onChange={this.handleChange} name="position" id="position" className="form-control " placeholder="Position" type="text"></input><br></br>
 
-               <label for="position2" className='letraBlanco'>Position Employe</label><br></br>
+               <label htmlFor="position2" className='letraBlanco'>Position Employe</label><br></br>
                <input onChange={this.handleChange} name="position2" id="position2" className="form-control " placeholder="Position" type="text"></input><br></br>
 
-               <label for="education" className='letraBlanco'>Education</label><br></br>
+               <label htmlFor="education" className='letraBlanco'>Education</label><br></br>
                <input onChange={this.handleChange} name="education" id="education" className="form-control " placeholder="Education" type="text"></input><br></br>
 
-               <label for="education2" className='letraBlanco'>Education</label><br></br>
+               <label htmlFor="education2" className='letraBlanco'>Education</label><br></br>
                <input onChange={this.handleChange} name="education2" id="education2" className="form-control " placeholder="Education" type="text"></input><br></br>
 
+                <label htmlFor="profecionPrueba" className='letraBlanco'>prueba profecion</label><br></br>
+                <input onChange={this.handleChange} name="profecionPrueba" id="profecionPrueba" className=" " placeholder="profecionPrueba" type="text"></input>
+                <button onClick={()=>this.guardar()}>guardar</button>
+                <button>limpiar</button>
 
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">Posicion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        {this.state.data.map((e)=>(
+                                    <tr>
+                                            <td>{e.profecionPrueba}</td>
+                                    </tr>
 
-
-
-
+                                  ))}
+                           {/*  {<th>{this.state.tab.profecionPrueba}</th>} */}
+                            
+                        </tbody>
+                    </table>
 
                </form>
                
@@ -204,7 +245,7 @@ export default class Pagina extends Component{
                              <div className="divicionletra120" >
                                  <label className="colorgris normal">Employe</label>
                              <label className="letrapequenaderecha">from-unit</label><br></br>
-                             <p  className="colorgris letrapequena2 parrafo">{this.state.form.position}{/* Fernando was inspired to create the tool when his sister asked him for help with her resume. After he was unable to find an online tool to assist her */}</p>
+                             <p  className="colorgris letrapequena2 parrafo">{this.state.data.map((e)=>(<tr>{e.profecionPrueba}</tr>))}{/* {this.state.form.position} */}{/* Fernando was inspired to create the tool when his sister asked him for help with her resume. After he was unable to find an online tool to assist her */}</p>
                              <br></br><br></br>
                              </div>
                              <li className="colorazul"><h5 className="colorgris">Position</h5></li>
