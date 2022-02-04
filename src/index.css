@@ -127,37 +127,38 @@ display: none;
   left: 0px;
   top: 0px;
   
+  
 
-background: #000;
-display: none;
-padding: 5px;
-width: 320px;
-@include border-radius(5px);
+  background: #000;
+  display: none;
+  padding: 5px;
+  width: 320px;
+  @include border-radius(5px);
 
-#transition: all 0.5s ease;
+  #transition: all 0.5s ease;
 
-a{
-  display: block;
-  color: #fff;
-  text-align: center;
-  padding: 10px 2px;
-  margin: 3px 0;
-  text-decoration: none;
-  background: #444;
+  a{
+    display: block;
+    color: #fff;
+    text-align: center;
+    padding: 10px 2px;
+    margin: 3px 0;
+    text-decoration: none;
+    background: #444;
 
-  &:nth-child(1){
-    margin-top: 0;
-    @include border-radius(3px 3px 0 0 );
+    &:nth-child(1){
+      margin-top: 0;
+      @include border-radius(3px 3px 0 0 );
+    }
+    &:nth-child(5){
+      margin-bottom: 0;
+      @include border-radius(0 0 3px 3px);
+    }
+
+    &:hover{
+      background: #555;
+    }
   }
-  &:nth-child(5){
-    margin-bottom: 0;
-    @include border-radius(0 0 3px 3px);
-  }
-
-  &:hover{
-    background: #555;
-  }
-}
 }
 
 .menu{  

@@ -164,6 +164,10 @@ color: grey;
     width: 4.5rem;
   }
 
+  .borroso{
+    filter: blur(6px)
+  }
+
   
 
 
@@ -173,7 +177,7 @@ color: grey;
   width: 1300px;
   margin-bottom: 70px;
   
-
+  
 }
 
 

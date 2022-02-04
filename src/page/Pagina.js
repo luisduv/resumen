@@ -23,22 +23,25 @@ export default class Pagina extends Component{
                     education:'',
                     education2:'',
 
-                }
-                
+                },
+                 menuOpen:false
             }
     }
 
     
      openNav=()=>{
-        document.getElementById("sideNavigation").style.width = "400px";
-        document.getElementById("main").style.marginLeft = "400px";
-        document.getElementById("rof").style.filter = "blur(6px)";
+         
+         document.getElementById("fill").style.filter = "blur(6px)";
+         document.getElementById("sideNavigation").style.width = "400px";
+         document.getElementById("main").style.marginLeft = "400px"; 
+        
+
       }
 
        closeNav=()=> {
+        document.getElementById("fill").style.filter = "blur(0px)";
         document.getElementById("sideNavigation").style.width = "0";
         document.getElementById("main").style.marginLeft = "0";
-        document.getElementById("rof").style.filter=" blur(none)";
       } 
 
 
@@ -124,7 +127,7 @@ export default class Pagina extends Component{
              </div>
            
              <nav className="topnav">
-               <a href="#" className="raya" onClick={()=>this.openNav()}  >
+               <a href="#" className="raya" onClick={()=>this.openNav()}>
                  <svg width="26" height="30"  id="icoOpen">
                      <path d="M0,5 30,5" stroke="#000" stroke-width="5"/>
                      <path d="M0,14 30,14" stroke="#000" stroke-width="5"/>
@@ -141,9 +144,10 @@ export default class Pagina extends Component{
  
 </div>
 
-   <div className='row ' id="rof">
+   <div className='row' id="fill">
+       
    
-       <div className='col-md-3 '>
+       <div className='col-md-3'>
          
            <div id="circulo" >
              <div  className="container fluid topecirculo">
