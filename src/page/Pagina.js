@@ -133,8 +133,8 @@ export default class Pagina extends Component{
                 <hr></hr>
                <label htmlFor="profecionPrueba" className='letraBlanco'>prueba profecion</label><br></br>
                 <input onChange={this.handleChange} name="profecionPrueba" id="profecionPrueba" className=" " placeholder="profecionPrueba" type="text"></input>
-                <button onClick={()=>this.guardar()}>guardar</button>
-                <button onClick={()=>this.limpiartodo()}>limpiar</button>
+                {"  "}<button className="btn btn-success" onClick={()=>this.guardar()}>guardar</button>{"  "}
+                <button className="btn btn-warning" onClick={()=>this.limpiartodo()}>limpiar</button>
 
                     <table class="table">
                         <thead>
