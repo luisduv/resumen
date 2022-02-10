@@ -78,6 +78,7 @@ export default class Pagina extends Component {
     }
 
     eliminar = (dato) => {
+        
         var opcion = window.confirm("Esta seguro de eliminar  " + dato.id);
         if (opcion) {
             var contador = 0;
@@ -93,21 +94,21 @@ export default class Pagina extends Component {
     }
 
     editar = (dato) => {
-        console.log("estoy en dato"+dato.id)
         var contador = 0;
         var lista = this.state.data;
+        
         lista.map((registro) => {
             if(dato.id == registro.id) {
-                var input = document.getElementById('profecionPrueba').value ;
-                /*  lista[contador].profecionPrueba=dato.input; */
-                /* lista.splice(contador,1) */
-                //dato.profecionPrueba =input
-                lista[contador].profecionPrueba = dato.profecionPrueba;
-                var input = document.getElementById('profecionPrueba').value = "";
+                console.log("estoydentro");
+                 input=document.getElementById('profecionPrueba').value ;
+                 console.log("input"+input);
+                lista[contador].profecionPrueba = input;
                 
-            }
-            contador++;
-        })
+                
+            }contador++;
+           
+        });
+        var input = document.getElementById('profecionPrueba').value = "";
         this.setState({ data: lista });
         console.log(data)
     }
@@ -181,7 +182,7 @@ export default class Pagina extends Component {
                                             <tr>
 
                                                 <td onClick={() => this.mostrareditar(e)}>{e.profecionPrueba}</td>
-                                                {/* <td><button type="button" onClick={() => this.editar(e)} className="btn btn-danger">editar</button></td> */}
+                                               {/*   <td><button type="button" onClick={() => this.editar(e)} className="btn btn-danger">editar</button></td>  */}
                                                 <td><button onClick={() => this.eliminar(e)} className="btn btn-danger">X</button></td>
 
                                             </tr>
