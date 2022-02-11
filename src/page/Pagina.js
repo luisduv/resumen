@@ -67,18 +67,22 @@ export default class Pagina extends Component {
         });
     }
 
-    guardar = () => {
+   /*  guardar = () => {
             var input = document.getElementById('profecionPrueba').value = "";
             var valorNuevo = { ...this.state.tab };
             valorNuevo.id = this.state.data.length + 1;
             var lista = this.state.data;
             lista.push(valorNuevo);
             this.setState({ data: lista });
-    }
+    } */
 
     limpiartodo = () => {
-        var input = document.getElementById('profecionPrueba').value = "";
-    
+        // debugger 
+        var input = document.getElementById('profecionPrueba');
+         input.value = "";
+         input=null;
+         this.setState({ indexEdicion: null });
+         
     }
 
     eliminar = (dato) => {
@@ -101,23 +105,28 @@ export default class Pagina extends Component {
         var lista = this.state.data;
         var valorEditado = document.getElementById('profecionPrueba').value;
         var indexEdicion = this.state.indexEdicion;
-        /* debugger */
+        
         if(indexEdicion >= 0  && typeof indexEdicion == "number"){
+            
             lista[indexEdicion].profecionPrueba = valorEditado;
         }
         else {
             var id = this.state.data.length + 1;
             lista.push({id,profecionPrueba:valorEditado})
         }
+        
         document.getElementById('profecionPrueba').value = "";
         this.setState({ indexEdicion: null, data: lista });
         console.log(data)
+
     }
 
     mostrareditar = (dato, indexArreglo) => {
         var indexEdicion = indexArreglo;
         this.setState({indexEdicion});
         var input = document.getElementById('profecionPrueba').value = dato.profecionPrueba;
+       
+
     }
 
 
