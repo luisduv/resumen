@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 
-const data = [{ id: '', profecionPrueba: '' }];
+const data = [];
 
 export default class Pagina extends Component {
 
@@ -9,6 +9,7 @@ export default class Pagina extends Component {
         super(props);
         this.state = {
             data: data,
+            indexEdicion: null,
 
             form: {
                 profile: '',
@@ -25,7 +26,9 @@ export default class Pagina extends Component {
 
 
             },
-            tab: { id: '', profecionPrueba: '' }
+            tab: { id: '',
+             profecionPrueba: ''
+             }
             ,
             menuOpen: false
         }
@@ -65,16 +68,17 @@ export default class Pagina extends Component {
     }
 
     guardar = () => {
-        var input = document.getElementById('profecionPrueba').value = "";
-        var valorNuevo = { ...this.state.tab };
-        valorNuevo.id = this.state.data.length + 1;
-        var lista = this.state.data;
-        lista.push(valorNuevo);
-        this.setState({ data: lista/* divInsertar:false */ });
+            var input = document.getElementById('profecionPrueba').value = "";
+            var valorNuevo = { ...this.state.tab };
+            valorNuevo.id = this.state.data.length + 1;
+            var lista = this.state.data;
+            lista.push(valorNuevo);
+            this.setState({ data: lista });
     }
 
     limpiartodo = () => {
         var input = document.getElementById('profecionPrueba').value = "";
+    
     }
 
     eliminar = (dato) => {
@@ -93,27 +97,26 @@ export default class Pagina extends Component {
         }
     }
 
-    editar = (dato) => {
-        var contador = 0;
+    editar = () => {
         var lista = this.state.data;
-        
-        lista.map((registro) => {
-            if(dato.id == registro.id) {
-                console.log("estoydentro");
-                 input=document.getElementById('profecionPrueba').value ;
-                 console.log("input"+input);
-                lista[contador].profecionPrueba = input;
-                
-                
-            }contador++;
-           
-        });
-        var input = document.getElementById('profecionPrueba').value = "";
-        this.setState({ data: lista });
+        var valorEditado = document.getElementById('profecionPrueba').value;
+        var indexEdicion = this.state.indexEdicion;
+        /* debugger */
+        if(indexEdicion >= 0  && typeof indexEdicion == "number"){
+            lista[indexEdicion].profecionPrueba = valorEditado;
+        }
+        else {
+            var id = this.state.data.length + 1;
+            lista.push({id,profecionPrueba:valorEditado})
+        }
+        document.getElementById('profecionPrueba').value = "";
+        this.setState({ indexEdicion: null, data: lista });
         console.log(data)
     }
 
-    mostrareditar = (dato) => {
+    mostrareditar = (dato, indexArreglo) => {
+        var indexEdicion = indexArreglo;
+        this.setState({indexEdicion});
         var input = document.getElementById('profecionPrueba').value = dato.profecionPrueba;
     }
 
@@ -165,9 +168,9 @@ export default class Pagina extends Component {
 
                                 <label htmlFor="profecionPrueba" className='letraBlanco'>prueba profecion</label><br></br>
                                 <input onChange={this.handleChange} name="profecionPrueba" id="profecionPrueba" className=" " placeholder="profecionPrueba" type="text"></input>
-                                {"  "}<button type="button" className="btn btn-success" onClick={() => this.guardar()}>guardar</button>{"  "}
-                                <button className="btn btn-warning" onClick={() => this.limpiartodo()}>limpiar</button>
-                                <button type="button" className="btn btn-warning" onClick={() => this.editar(this.state.tab)}>editar</button>
+                                {"  "}
+                                <button type="button" className="btn btn-success" onClick={() => this.editar()}>Guardar</button>{" "}
+                                <button type="button" className="btn btn-warning" onClick={() => this.limpiartodo()}>limpiar</button>
 
 
                                 <table className="table">
@@ -178,10 +181,10 @@ export default class Pagina extends Component {
                                     </thead>
                                     <tbody>
 
-                                        {this.state.data.map((e) => (
+                                        {this.state.data.map((e, i) => (
                                             <tr>
 
-                                                <td onClick={() => this.mostrareditar(e)}>{e.profecionPrueba}</td>
+                                                <td onClick={() => this.mostrareditar(e, i)}>{e.profecionPrueba}</td>
                                                {/*   <td><button type="button" onClick={() => this.editar(e)} className="btn btn-danger">editar</button></td>  */}
                                                 <td><button onClick={() => this.eliminar(e)} className="btn btn-danger">X</button></td>
 
