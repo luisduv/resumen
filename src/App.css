@@ -183,6 +183,21 @@ color: grey;
 }
 
 
+.openmenufill{
+  filter : blur(6px);
+}
+.openmenusidev{
+  width:400px;
+}
+
+.closemenufill{
+  filter : blur(0px);
+}
+.closemenusidev{
+  width:0px;
+}
+
+
 
 .derech{
   margin-right: 70px;

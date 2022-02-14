@@ -10,6 +10,10 @@ export default class Pagina extends Component {
         this.state = {
             data: data,
             indexEdicion: null,
+           /*  openmenufill,
+            openmenusidev,
+            closemenufill,
+            closemenusidev, */
 
             form: {
                 profile: '',
@@ -26,8 +30,9 @@ export default class Pagina extends Component {
 
 
             },
-            tab: { id: '',
-             profecionPrueba: ''
+            tab: { 
+                id: '',
+                profecionPrueba: ''
              }
             ,
             menuOpen: false
@@ -65,24 +70,11 @@ export default class Pagina extends Component {
 
 
         });
-    }
-
-   /*  guardar = () => {
-            var input = document.getElementById('profecionPrueba').value = "";
-            var valorNuevo = { ...this.state.tab };
-            valorNuevo.id = this.state.data.length + 1;
-            var lista = this.state.data;
-            lista.push(valorNuevo);
-            this.setState({ data: lista });
-    } */
+    }    
 
     limpiartodo = () => {
-        // debugger 
-        var input = document.getElementById('profecionPrueba');
-         input.value = "";
-         input=null;
-         this.setState({ indexEdicion: null });
-         
+        const { tab } = this.state;
+        this.setState({ indexEdicion: null, tab: { ...tab, profecionPrueba: "" } });
     }
 
     eliminar = (dato) => {
@@ -103,30 +95,28 @@ export default class Pagina extends Component {
 
     editar = () => {
         var lista = this.state.data;
-        var valorEditado = document.getElementById('profecionPrueba').value;
+        const { tab } = this.state;
         var indexEdicion = this.state.indexEdicion;
         
         if(indexEdicion >= 0  && typeof indexEdicion == "number"){
             
-            lista[indexEdicion].profecionPrueba = valorEditado;
+            lista[indexEdicion].profecionPrueba = tab.profecionPrueba;
         }
         else {
             var id = this.state.data.length + 1;
-            lista.push({id,profecionPrueba:valorEditado})
+            lista.push({id, profecionPrueba: tab.profecionPrueba})
         }
         
-        document.getElementById('profecionPrueba').value = "";
-        this.setState({ indexEdicion: null, data: lista });
+        this.limpiartodo()
+        this.setState({ indexEdicion: null, data: lista});
         console.log(data)
 
     }
 
     mostrareditar = (dato, indexArreglo) => {
+        const { tab } = this.state;
         var indexEdicion = indexArreglo;
-        this.setState({indexEdicion});
-        var input = document.getElementById('profecionPrueba').value = dato.profecionPrueba;
-       
-
+        this.setState({indexEdicion, tab: { ...tab, ...dato }});
     }
 
 
@@ -151,32 +141,32 @@ export default class Pagina extends Component {
                             <form id="formulario" className="form-control">
 
                                 <label htmlFor="profile" className='letraBlanco'>Profile</label><br></br>
-                                <input onChange={this.handleChange} name="profile" id="profile" className="form-control col-xs-4" placeholder="Perfil" type="text"></input><br></br>
+                                <input onChange={this.handleChange} name="profile"  id="profile" className="form-control input-sm" placeholder="Perfil" type="text" value={this.state.form.profile}></input><br></br>
 
                                 <label htmlFor="BirthDate" className='letraBlanco'>Birth Date</label><br></br>
-                                <input onChange={this.handleChange} name="BirthDate" id="BirthDate" className="form-control " placeholder="fecha Cumpleaños" type="date"></input><br></br>
+                                <input onChange={this.handleChange} value={this.state.form.BirthDate} name="BirthDate" id="BirthDate" className="form-control " placeholder="fecha Cumpleaños" type="date"></input><br></br>
 
                                 <label htmlFor="nacionalidad" className='letraBlanco'>Nacionalidad</label><br></br>
-                                <input onChange={this.handleChange} name="nacionalidad" id="nacionalidad" className="form-control " placeholder="Nacionalidad" type="text"></input><br></br>
+                                <input onChange={this.handleChange} value={this.state.form.nacionalidad} name="nacionalidad" id="nacionalidad" className="form-control " placeholder="Nacionalidad" type="text"></input><br></br>
 
                                 <label htmlFor="address" className='letraBlanco'>Address</label><br></br>
-                                <input onChange={this.handleChange} name="address" id="address" className="form-control " placeholder="Address" type="text"></input><br></br>
+                                <input onChange={this.handleChange} value={this.state.form.address} name="address" id="address" className="form-control " placeholder="Address" type="text"></input><br></br>
 
                                 <label htmlFor="email" className='letraBlanco'>Email</label><br></br>
-                                <input onChange={this.handleChange} name="email" id="email" className="form-control " placeholder="Email" type="email"></input><br></br>
+                                <input onChange={this.handleChange} value={this.state.form.email} name="email" id="email" className="form-control " placeholder="Email" type="email"></input><br></br>
 
                                 <label htmlFor="phone" className='letraBlanco'>Phone</label><br></br>
-                                <input onChange={this.handleChange} name="phone" id="phone" className="form-control " placeholder="Phone" type="number"></input><br></br>
+                                <input onChange={this.handleChange} value={this.state.form.phone} name="phone" id="phone" className="form-control " placeholder="Phone" type="number"></input><br></br>
 
                                 <label htmlFor="address2" className='letraBlanco'>Address</label><br></br>
-                                <input onChange={this.handleChange} name="address2" id="address2" className="form-control " placeholder="Address" type="text"></input><br></br>
+                                <input onChange={this.handleChange} value={this.state.form.address2} name="address2" id="address2" className="form-control " placeholder="Address" type="text"></input><br></br>
 
                                 <label htmlFor="name" className='letraBlanco'>Name</label><br></br>
-                                <input onChange={this.handleChange} name="name" id="name" className="form-control " placeholder="Name" type="text"></input><br></br>
+                                <input onChange={this.handleChange} value={this.state.form.name} name="name" id="name" className="form-control " placeholder="Name" type="text"></input><br></br>
                                 <hr></hr>
 
                                 <label htmlFor="profecionPrueba" className='letraBlanco'>prueba profecion</label><br></br>
-                                <input onChange={this.handleChange} name="profecionPrueba" id="profecionPrueba" className=" " placeholder="profecionPrueba" type="text"></input>
+                                <input onChange={this.handleChange} value={this.state.tab.profecionPrueba}  name="profecionPrueba" id="profecionPrueba" className=" " placeholder="profecionPrueba" type="text"></input>
                                 {"  "}
                                 <button type="button" className="btn btn-success" onClick={() => this.editar()}>Guardar</button>{" "}
                                 <button type="button" className="btn btn-warning" onClick={() => this.limpiartodo()}>limpiar</button>
@@ -195,7 +185,7 @@ export default class Pagina extends Component {
 
                                                 <td onClick={() => this.mostrareditar(e, i)}>{e.profecionPrueba}</td>
                                                {/*   <td><button type="button" onClick={() => this.editar(e)} className="btn btn-danger">editar</button></td>  */}
-                                                <td><button onClick={() => this.eliminar(e)} className="btn btn-danger">X</button></td>
+                                                <td><button  type="button" onClick={() => this.eliminar(e)} className="btn btn-danger">X</button></td>
 
                                             </tr>
                                         ))}
