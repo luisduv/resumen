@@ -19,9 +19,6 @@
   position: absolute;
 }
 
-
-
-
 #circulo{
   margin-top: 20%;
   margin-left: 70px;
@@ -49,8 +46,6 @@
   margin-left: 14px ;
 }
 
-
-
 .colorgris{
 color: grey;
 }
@@ -76,8 +71,6 @@ color: grey;
        margin-left: 14px;
 }
 
-
-
 .ul{
   position: relative;
 }
@@ -91,7 +84,6 @@ color: grey;
   background-color: grey;
   top: 19px;
   border-radius: 50px;
-
 }
 
 .bordesborroso{
@@ -129,10 +121,6 @@ color: grey;
   line-height: 115%;
 }
 
-
-
-
-
 .colorazul{
   color:lightseagreen;
 }
@@ -150,8 +138,6 @@ color: grey;
     color: #DEDFD8;
   }
 
-
-
   .bordesborroso{
     box-shadow: 5px 5px 20px 10px #29806A;
   }
@@ -164,24 +150,30 @@ color: grey;
     width: 4.5rem;
   }
 
- 
-
   .borroso{
     filter: blur(6px)
   }
-
-  
-
 
 .row{
   display: flex;
   justify-content: center;
   width: 1300px;
   margin-bottom: 70px;
-  
-  
 }
 
+.botones{
+  margin-left: 220px;
+  margin-top: 7px;
+/*  display: flex;
+ justify-content: flex-end; */
+}
+.botones2{
+  margin-top: 7px;
+  float: right;
+  /* margin-left: 60px; */
+/*  display: flex;
+ justify-content: flex-end; */
+}
 
 .openmenufill{
   filter : blur(6px);

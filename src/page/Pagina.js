@@ -10,10 +10,8 @@ export default class Pagina extends Component {
         this.state = {
             data: data,
             indexEdicion: null,
-           /*  openmenufill,
-            openmenusidev,
-            closemenufill,
-            closemenusidev, */
+            open: false,
+
 
             form: {
                 profile: '',
@@ -30,10 +28,10 @@ export default class Pagina extends Component {
 
 
             },
-            tab: { 
+            tab: {
                 id: '',
                 profecionPrueba: ''
-             }
+            }
             ,
             menuOpen: false
         }
@@ -41,17 +39,11 @@ export default class Pagina extends Component {
 
 
     openNav = () => {
-        //borroso pantalla la primera fila
-        document.getElementById("fill").style.filter = "blur(6px)";
-        document.getElementById("sideNavigation").style.width = "400px";
-        /* document.getElementById("main").style.marginLeft = "400px";  */
-
+        this.setState({ open: true })
     }
 
     closeNav = () => {
-        document.getElementById("fill").style.filter = "blur(0px)";
-        document.getElementById("sideNavigation").style.width = "0";
-        /* document.getElementById("main").style.marginLeft = "0"; */
+        this.setState({ open: false })
     }
 
 
@@ -61,16 +53,12 @@ export default class Pagina extends Component {
                 ...this.state.form,
                 [e.target.name]: e.target.value,
             },
-
             tab: {
                 ...this.state.tab,
                 [e.target.name]: e.target.value,
             }
-
-
-
         });
-    }    
+    }
 
     limpiartodo = () => {
         const { tab } = this.state;
@@ -78,7 +66,6 @@ export default class Pagina extends Component {
     }
 
     eliminar = (dato) => {
-        
         var opcion = window.confirm("Esta seguro de eliminar  " + dato.id);
         if (opcion) {
             var contador = 0;
@@ -97,119 +84,117 @@ export default class Pagina extends Component {
         var lista = this.state.data;
         const { tab } = this.state;
         var indexEdicion = this.state.indexEdicion;
-        
-        if(indexEdicion >= 0  && typeof indexEdicion == "number"){
-            
+
+        if (indexEdicion >= 0 && typeof indexEdicion == "number") {
+
             lista[indexEdicion].profecionPrueba = tab.profecionPrueba;
         }
         else {
             var id = this.state.data.length + 1;
-            lista.push({id, profecionPrueba: tab.profecionPrueba})
+            lista.push({ id, profecionPrueba: tab.profecionPrueba })
         }
-        
         this.limpiartodo()
-        this.setState({ indexEdicion: null, data: lista});
+        this.setState({ indexEdicion: null, data: lista });
         console.log(data)
-
     }
 
     mostrareditar = (dato, indexArreglo) => {
         const { tab } = this.state;
         var indexEdicion = indexArreglo;
-        this.setState({indexEdicion, tab: { ...tab, ...dato }});
+        this.setState({ indexEdicion, tab: { ...tab, ...dato } });
     }
 
 
 
     render() {
+        let claseopen = '';
+        let claseopen2 = 'sidenav'
+        let claseclose = '';
+        let claseclose2 = 'sidenav'
+
+        if (this.state.open == true) {
+            claseopen += ' openmenufill';
+        }
+        if (this.state.open == true) {
+            claseopen2 += ' openmenusidev';
+        } if (this.state.open == false) {
+            claseclose += ' closemenufill';
+        }
+        if (this.state.open == false) {
+            claseclose2 += ' closemenusidev';
+        }
+
         return (
-
-
             <div>
                 <div className='menu'>
-
-                    {/*    <button className='btn btn-secondary'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-list " viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                    </svg>
-                </button> */}
-
-                    <div id="sideNavigation" className="sidenav">
+                    <div id="sideNavigation" className={'sidenav ' + this.state.openmenusidev ? claseopen2 : claseclose2}>
                         <a href="javascript:void(0)" className="closebtn" onClick={() => this.closeNav()} >&times;</a>
                         <div className='conteiner'>
-
                             <form id="formulario" className="form-control">
-
                                 <label htmlFor="profile" className='letraBlanco'>Profile</label><br></br>
-                                <input onChange={this.handleChange} name="profile"  id="profile" className="form-control input-sm" placeholder="Perfil" type="text" value={this.state.form.profile}></input><br></br>
+                                <input onChange={this.handleChange} name="profile" id="profile" className="form-control  form-control-sm" placeholder="Perfil" type="text" value={this.state.form.profile}></input><br></br>
 
                                 <label htmlFor="BirthDate" className='letraBlanco'>Birth Date</label><br></br>
-                                <input onChange={this.handleChange} value={this.state.form.BirthDate} name="BirthDate" id="BirthDate" className="form-control " placeholder="fecha Cumpleaños" type="date"></input><br></br>
+                                <input onChange={this.handleChange} value={this.state.form.BirthDate} name="BirthDate" id="BirthDate" className="form-control  form-control-sm" placeholder="fecha Cumpleaños" type="date"></input><br></br>
 
                                 <label htmlFor="nacionalidad" className='letraBlanco'>Nacionalidad</label><br></br>
-                                <input onChange={this.handleChange} value={this.state.form.nacionalidad} name="nacionalidad" id="nacionalidad" className="form-control " placeholder="Nacionalidad" type="text"></input><br></br>
+                                <input onChange={this.handleChange} value={this.state.form.nacionalidad} name="nacionalidad" id="nacionalidad" className="form-control  form-control-sm" placeholder="Nacionalidad" type="text"></input><br></br>
 
                                 <label htmlFor="address" className='letraBlanco'>Address</label><br></br>
-                                <input onChange={this.handleChange} value={this.state.form.address} name="address" id="address" className="form-control " placeholder="Address" type="text"></input><br></br>
+                                <input onChange={this.handleChange} value={this.state.form.address} name="address" id="address" className="form-control  form-control-sm" placeholder="Address" type="text"></input><br></br>
 
                                 <label htmlFor="email" className='letraBlanco'>Email</label><br></br>
-                                <input onChange={this.handleChange} value={this.state.form.email} name="email" id="email" className="form-control " placeholder="Email" type="email"></input><br></br>
+                                <input onChange={this.handleChange} value={this.state.form.email} name="email" id="email" className="form-control  form-control-sm" placeholder="Email" type="email"></input><br></br>
 
                                 <label htmlFor="phone" className='letraBlanco'>Phone</label><br></br>
-                                <input onChange={this.handleChange} value={this.state.form.phone} name="phone" id="phone" className="form-control " placeholder="Phone" type="number"></input><br></br>
+                                <input onChange={this.handleChange} value={this.state.form.phone} name="phone" id="phone" className="form-control  form-control-sm" placeholder="Phone" type="number"></input><br></br>
 
                                 <label htmlFor="address2" className='letraBlanco'>Address</label><br></br>
-                                <input onChange={this.handleChange} value={this.state.form.address2} name="address2" id="address2" className="form-control " placeholder="Address" type="text"></input><br></br>
+                                <input onChange={this.handleChange} value={this.state.form.address2} name="address2" id="address2" className="form-control  form-control-sm" placeholder="Address" type="text"></input><br></br>
 
                                 <label htmlFor="name" className='letraBlanco'>Name</label><br></br>
-                                <input onChange={this.handleChange} value={this.state.form.name} name="name" id="name" className="form-control " placeholder="Name" type="text"></input><br></br>
+                                <input onChange={this.handleChange} value={this.state.form.name} name="name" id="name" className="form-control  form-control-sm" placeholder="Name" type="text"></input><br></br>
                                 <hr></hr>
 
-                                <label htmlFor="profecionPrueba" className='letraBlanco'>prueba profecion</label><br></br>
-                                <input onChange={this.handleChange} value={this.state.tab.profecionPrueba}  name="profecionPrueba" id="profecionPrueba" className=" " placeholder="profecionPrueba" type="text"></input>
-                                {"  "}
-                                <button type="button" className="btn btn-success" onClick={() => this.editar()}>Guardar</button>{" "}
-                                <button type="button" className="btn btn-warning" onClick={() => this.limpiartodo()}>limpiar</button>
-
+                                <label htmlFor="profecionPrueba" className='letraBlanco'>Nombre Posición</label><br></br>
+                                <input onChange={this.handleChange} value={this.state.tab.profecionPrueba} name="profecionPrueba" id="profecionPrueba" className="form-control  form-control-sm" placeholder="Posición" type="text"></input>
+                                
+                                <button type="button" className="btn btn-success btn-sm botones2" onClick={() => this.editar()}>Guardar</button>
+                                <button type="button" className="btn btn-warning btn-sm botones" onClick={() => this.limpiartodo()}>limpiar</button>
 
                                 <table className="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">Posicion</th>
+                                            <th scope="col">Posición</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                         {this.state.data.map((e, i) => (
                                             <tr>
-
                                                 <td onClick={() => this.mostrareditar(e, i)}>{e.profecionPrueba}</td>
-                                               {/*   <td><button type="button" onClick={() => this.editar(e)} className="btn btn-danger">editar</button></td>  */}
-                                                <td><button  type="button" onClick={() => this.eliminar(e)} className="btn btn-danger">X</button></td>
-
+                                                {/*   <td><button type="button" onClick={() => this.editar(e)} className="btn btn-danger">editar</button></td>  */}
+                                                <td><button type="button" onClick={() => this.eliminar(e)} className="btn btn-danger">X</button></td>
                                             </tr>
                                         ))}
-                                        {/*  {<th>{this.state.tab.profecionPrueba}</th>} */}
-
                                     </tbody>
                                 </table>
 
                                 <label htmlFor="position2" className='letraBlanco'>Position Employe</label><br></br>
-                                <input onChange={this.handleChange} name="position2" id="position2" className="form-control " placeholder="Position" type="text"></input><br></br>
+                                <input onChange={this.handleChange} name="position2" id="position2" className="form-control  form-control-sm" placeholder="Position" type="text"></input><br></br>
 
                                 <label htmlFor="education" className='letraBlanco'>Education</label><br></br>
-                                <input onChange={this.handleChange} name="education" id="education" className="form-control " placeholder="Education" type="text"></input><br></br>
+                                <input onChange={this.handleChange} name="education" id="education" className="form-control  form-control-sm" placeholder="Education" type="text"></input><br></br>
 
                                 <label htmlFor="education2" className='letraBlanco'>Education</label><br></br>
-                                <input onChange={this.handleChange} name="education2" id="education2" className="form-control " placeholder="Education" type="text"></input><br></br>
-
+                                <input onChange={this.handleChange} name="education2" id="education2" className="form-control  form-control-sm" placeholder="Education" type="text"></input><br></br>
 
                             </form>
-
                         </div>
                     </div>
 
                     <nav className="topnav">
+
                         <a href="#" className="raya" onClick={() => this.openNav()}>
                             <svg width="26" height="30" id="icoOpen">
                                 <path d="M0,5 30,5" stroke="#000" stroke-width="5" />
@@ -227,11 +212,8 @@ export default class Pagina extends Component {
 
                 </div>
 
-                <div className='row' id="fill">
-
-
+                <div className={'row ' + (this.state.openmenufill ? claseopen : claseclose)} id="fill" >
                     <div className='col-md-3'>
-
                         <div id="circulo" >
                             <div className="container fluid topecirculo">
                                 <span className=" spa fa fa-camera fa-2x"></span>
