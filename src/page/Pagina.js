@@ -132,32 +132,32 @@ export default class Pagina extends Component {
                         <div className='conteiner'>
                             <form id="formulario" className="form-control">
                                 <label htmlFor="profile" className='letraBlanco'>Profile</label><br></br>
-                                <input onChange={this.handleChange} name="profile" id="profile" className="form-control  form-control-sm" placeholder="Perfil" type="text" value={this.state.form.profile}></input><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" name="profile" id="profile" className="form-control  form-control-sm" placeholder="Perfil" type="text" value={this.state.form.profile}></input><br></br>
 
                                 <label htmlFor="BirthDate" className='letraBlanco'>Birth Date</label><br></br>
-                                <input onChange={this.handleChange} value={this.state.form.BirthDate} name="BirthDate" id="BirthDate" className="form-control  form-control-sm" placeholder="fecha Cumpleaños" type="date"></input><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.BirthDate} name="BirthDate" id="BirthDate" className="form-control  form-control-sm" placeholder="fecha Cumpleaños" type="date"></input><br></br>
 
                                 <label htmlFor="nacionalidad" className='letraBlanco'>Nacionalidad</label><br></br>
-                                <input onChange={this.handleChange} value={this.state.form.nacionalidad} name="nacionalidad" id="nacionalidad" className="form-control  form-control-sm" placeholder="Nacionalidad" type="text"></input><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.nacionalidad} name="nacionalidad" id="nacionalidad" className="form-control  form-control-sm" placeholder="Nacionalidad" type="text"></input><br></br>
 
                                 <label htmlFor="address" className='letraBlanco'>Address</label><br></br>
-                                <input onChange={this.handleChange} value={this.state.form.address} name="address" id="address" className="form-control  form-control-sm" placeholder="Address" type="text"></input><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.address} name="address" id="address" className="form-control  form-control-sm" placeholder="Address" type="text"></input><br></br>
 
                                 <label htmlFor="email" className='letraBlanco'>Email</label><br></br>
-                                <input onChange={this.handleChange} value={this.state.form.email} name="email" id="email" className="form-control  form-control-sm" placeholder="Email" type="email"></input><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.email} name="email" id="email" className="form-control  form-control-sm" placeholder="Email" type="email"></input><br></br>
 
                                 <label htmlFor="phone" className='letraBlanco'>Phone</label><br></br>
-                                <input onChange={this.handleChange} value={this.state.form.phone} name="phone" id="phone" className="form-control  form-control-sm" placeholder="Phone" type="number"></input><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.phone} name="phone" id="phone" className="form-control  form-control-sm" placeholder="Phone" type="number"></input><br></br>
 
                                 <label htmlFor="address2" className='letraBlanco'>Address</label><br></br>
-                                <input onChange={this.handleChange} value={this.state.form.address2} name="address2" id="address2" className="form-control  form-control-sm" placeholder="Address" type="text"></input><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.address2} name="address2" id="address2" className="form-control  form-control-sm" placeholder="Address" type="text"></input><br></br>
 
                                 <label htmlFor="name" className='letraBlanco'>Name</label><br></br>
-                                <input onChange={this.handleChange} value={this.state.form.name} name="name" id="name" className="form-control  form-control-sm" placeholder="Name" type="text"></input><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.name} name="name" id="name" className="form-control  form-control-sm" placeholder="Name" type="text"></input><br></br>
                                 <hr></hr>
 
                                 <label htmlFor="profecionPrueba" className='letraBlanco'>Nombre Posición</label><br></br>
-                                <input onChange={this.handleChange} value={this.state.tab.profecionPrueba} name="profecionPrueba" id="profecionPrueba" className="form-control  form-control-sm" placeholder="Posición" type="text"></input>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.tab.profecionPrueba} name="profecionPrueba" id="profecionPrueba" className="form-control  form-control-sm" placeholder="Posición" type="text"></input>
                                 
                                 <button type="button" className="btn btn-success btn-sm botones2" onClick={() => this.editar()}>Guardar</button>
                                 <button type="button" className="btn btn-warning btn-sm botones" onClick={() => this.limpiartodo()}>limpiar</button>
@@ -181,13 +181,13 @@ export default class Pagina extends Component {
                                 </table>
 
                                 <label htmlFor="position2" className='letraBlanco'>Position Employe</label><br></br>
-                                <input onChange={this.handleChange} name="position2" id="position2" className="form-control  form-control-sm" placeholder="Position" type="text"></input><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" name="position2" id="position2" className="form-control  form-control-sm" placeholder="Position" type="text"></input><br></br>
 
                                 <label htmlFor="education" className='letraBlanco'>Education</label><br></br>
-                                <input onChange={this.handleChange} name="education" id="education" className="form-control  form-control-sm" placeholder="Education" type="text"></input><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" name="education" id="education" className="form-control  form-control-sm" placeholder="Education" type="text"></input><br></br>
 
                                 <label htmlFor="education2" className='letraBlanco'>Education</label><br></br>
-                                <input onChange={this.handleChange} name="education2" id="education2" className="form-control  form-control-sm" placeholder="Education" type="text"></input><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" name="education2" id="education2" className="form-control  form-control-sm" placeholder="Education" type="text"></input><br></br>
 
                             </form>
                         </div>
