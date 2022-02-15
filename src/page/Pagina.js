@@ -212,7 +212,7 @@ export default class Pagina extends Component {
 
                 </div>
 
-                <div className={'row ' + (this.state.openmenufill ? claseopen : claseclose)} id="fill" >
+                <div className={'row ' + (this.state.open ? claseopen : claseclose)} id="fill" >
                     <div className='col-md-3'>
                         <div id="circulo" >
                             <div className="container fluid topecirculo">
