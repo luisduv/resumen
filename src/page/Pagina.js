@@ -84,11 +84,11 @@ export default class Pagina extends Component {
         var lista = this.state.data;
         const { tab } = this.state;
         var indexEdicion = this.state.indexEdicion;
-        if(tab.profecionPrueba== "" || tab.profecionPrueba<=3 ){
-            alert("Debe de agregar un empleo " )
+        if (tab.profecionPrueba == "") {
+            alert("Debe de agregar una Posición ")
         }
-       else if(indexEdicion >= 0 && typeof indexEdicion == "number") {
-            
+        else if (indexEdicion >= 0 && typeof indexEdicion == "number") {
+
             lista[indexEdicion].profecionPrueba = tab.profecionPrueba;
         }
         else {
@@ -160,7 +160,7 @@ export default class Pagina extends Component {
 
                                 <label htmlFor="profecionPrueba" className='letraBlanco'>Nombre Posición</label><br></br>
                                 <input onChange={this.handleChange} autocomplete="off" value={this.state.tab.profecionPrueba} name="profecionPrueba" id="profecionPrueba" className="form-control  form-control-sm" placeholder="Posición" type="text"></input>
-                                
+
                                 <button type="button" className="btn btn-success btn-sm botones2" onClick={() => this.editar()}>Guardar</button>
                                 <button type="button" className="btn btn-warning btn-sm botones" onClick={() => this.limpiartodo()}>limpiar</button>
 
@@ -176,7 +176,7 @@ export default class Pagina extends Component {
                                             <tr>
                                                 <td onClick={() => this.mostrareditar(e, i)}>{e.profecionPrueba}</td>
                                                 {/*   <td><button type="button" onClick={() => this.editar(e)} className="btn btn-danger">editar</button></td>  */}
-                                                <td><button type="button" onClick={() => this.eliminar(e)} className="btn btn-danger">X</button></td>
+                                                <td className="eli"><button type="button" onClick={() => this.eliminar(e)} className="btn btn-danger btn-sm ">Eliminar</button></td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -260,37 +260,35 @@ export default class Pagina extends Component {
                             <h5 className="letra2 colorgris">YOUR PROFECCIONAL OR SPECIALITY</h5><br></br><br></br><br></br><br></br><br></br>
 
                             <div>
-                                <b className="letralarge letra2" >PROFESSIONAL EXPERIENCE</b><br></br><br></br>
+                                <b className="letralarge letra2" > EXPERIENCIA PROFECIONAL</b><br></br><br></br>
 
-                                <ul className="ul">
-                                    <li className="colorazul "><h5 className="colorgris">Position </h5></li>
-                                    <div className="linea">
-
-                                    </div>
-
-                                    <div className="divicionletra120" >
-                                        <label className="colorgris normal">Employe</label>
-                                        <label className="letrapequenaderecha">from-unit</label><br></br>
-                                        <p className="colorgris letrapequena2 parrafo">{this.state.data.map((e) => (<tr>{e.profecionPrueba}</tr>))}{/* {this.state.form.position} */}{/* Fernando was inspired to create the tool when his sister asked him for help with her resume. After he was unable to find an online tool to assist her */}</p>
-                                        <br></br><br></br>
-                                    </div>
-                                    <li className="colorazul"><h5 className="colorgris">Position</h5></li>
+                                
 
 
-                                    <div className="divicionletra120" >
-                                        <label className="colorgris normal">Employe</label>
-                                        <label className="letrapequenaderecha">from-unit</label><br></br>
-                                        <p className="colorgris letrapequena2 parrafo">{this.state.form.position2}{/* Fernando was inspired to create the tool when his sister asked him for help with her resume. After he was unable to find an online tool to assist her */}</p>
+                                    {this.state.data.map((e) => (
+                                        <ul className="ul">
+                                            <li className="colorazul "><h5 className="colorgris">{e.profecionPrueba}</h5></li>
+                                            <div className="linea"></div>
+                                            <div className="divicionletra120">
+                                                <label className="colorgris normal">Employe</label>
+                                                <label className="letrapequenaderecha">from-unit</label><br></br>
+                                                <p className="colorgris letrapequena2 parrafo">{e.profecionPrueba}</p>
+                                                <br></br><br></br>
+                                            </div>
+                                            
+                                        </ul>
 
-                                    </div>
-                                </ul>
+                                    ))}
+
+
+                                
 
                                 <br></br>
 
 
                                 <ul className="ul margen10">
 
-                                    <b className="letralarge">EDUCATION</b>
+                                    <b className="letralarge">EDUCACIÓN</b>
                                     <div className="linea2">
 
                                     </div>

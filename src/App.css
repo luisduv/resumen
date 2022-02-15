@@ -75,6 +75,15 @@ color: grey;
   position: relative;
 }
 
+.ul.ul{
+  top: 45px;
+  margin-bottom: -29px;
+}
+
+
+
+
+
 
 .linea {
   position: absolute;
@@ -82,7 +91,7 @@ color: grey;
   width: 2px;
   right: 538px;
   background-color: grey;
-  top: 19px;
+  top: 27px;
   border-radius: 50px;
 }
 
@@ -187,6 +196,12 @@ color: grey;
 }
 .closemenusidev{
   width:0px;
+}
+
+
+
+.eli{
+  width: 85px;
 }
 
 
