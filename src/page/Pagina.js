@@ -79,14 +79,16 @@ export default class Pagina extends Component {
             this.setState({ data: lista });
         }
     }
-
+    //editar y guradar
     editar = () => {
         var lista = this.state.data;
         const { tab } = this.state;
         var indexEdicion = this.state.indexEdicion;
-
-        if (indexEdicion >= 0 && typeof indexEdicion == "number") {
-
+        if(tab.profecionPrueba== "" || tab.profecionPrueba<=3 ){
+            alert("Debe de agregar un empleo " )
+        }
+       else if(indexEdicion >= 0 && typeof indexEdicion == "number") {
+            
             lista[indexEdicion].profecionPrueba = tab.profecionPrueba;
         }
         else {
