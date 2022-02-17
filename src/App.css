@@ -5,7 +5,23 @@
   margin-left: 50px;
    margin-right: 5px;
    margin-top: 60px;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
+
+}
+.titul{
+  display: flex;
+  justify-content: left;
+  font-size:25px;
+  margin-bottom: 10px;
+  margin-top: 30px;
+
+}
+.in{
+  margin-left: 10px;
+}
+
+.input {
+  margin-bottom: 15px;
 }
 
 .parrafo{
@@ -44,6 +60,15 @@
 
 .letra2{
   margin-left: 14px ;
+}
+
+
+.tamano{
+  font-size: 17px;
+}
+
+.edu{
+  margin-top: 70px;
 }
 
 .colorgris{
@@ -99,13 +124,17 @@ color: grey;
   box-shadow: 15px 15px 20px  #29806A;
 }
 
+.cuboedu{
+  margin-top: -21px;
+}
+
 .linea2 {
   position: absolute;
   height: 55%;
   width: 2px;
   right: 538px;
   background-color: grey;
-  top: 43px;
+  top: 25px;
   border-radius: 50px;
 
 }
@@ -168,13 +197,20 @@ color: grey;
   justify-content: center;
   width: 1300px;
   margin-bottom: 70px;
+  min-height: 1210px;
 }
 
 .botones{
-  margin-left: 220px;
+  margin-left: 340px;
   margin-top: 7px;
 /*  display: flex;
  justify-content: flex-end; */
+}
+
+
+
+.inputnombre{
+  overflow: hidden;
 }
 .botones2{
   margin-top: 7px;
@@ -188,7 +224,7 @@ color: grey;
   filter : blur(6px);
 }
 .openmenusidev{
-  width:400px;
+  width:520px;
 }
 
 .closemenufill{
@@ -204,10 +240,15 @@ color: grey;
   width: 85px;
 }
 
+.contenidoeli{
+  width: 70px;
+}
+
 
 
 .derech{
   margin-right: 70px;
+  min-height: 1000%;
 }
 
 

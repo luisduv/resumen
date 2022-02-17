@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 
 const data = [];
+const info = [];
 
 export default class Pagina extends Component {
 
@@ -9,7 +10,10 @@ export default class Pagina extends Component {
         super(props);
         this.state = {
             data: data,
+            info: info,
             indexEdicion: null,
+            indexEdicionedu: null,
+
             open: false,
 
 
@@ -22,15 +26,18 @@ export default class Pagina extends Component {
                 phone: '',
                 address2: '',
                 name: '',
-                position2: '',
                 education: '',
-                education2: '',
-
-
+                institucion: '',
+                fechainicioedu: '',
+                fechafinedu: '',
+                especialidad:'',
             },
             tab: {
                 id: '',
-                profecionPrueba: ''
+                profecionPrueba: '',
+                empleador: '',
+                fechainicio: '',
+                fechafin: '',
             }
             ,
             menuOpen: false
@@ -62,7 +69,12 @@ export default class Pagina extends Component {
 
     limpiartodo = () => {
         const { tab } = this.state;
-        this.setState({ indexEdicion: null, tab: { ...tab, profecionPrueba: "" } });
+        this.setState({ indexEdicion: null, tab: { ...tab, profecionPrueba: "", empleador: "", fechainicio: "", fechafin: "" } });
+    }
+
+    limpiartodoedu = () => {
+        const { form } = this.state;
+        this.setState({ indexEdicionedu: null, form: { ...form, education: "", institucion: "", fechainicioedu: "", fechafinedu: "" } });
     }
 
     eliminar = (dato) => {
@@ -79,24 +91,69 @@ export default class Pagina extends Component {
             this.setState({ data: lista });
         }
     }
+
+    eliminaredu = (dato) => {
+        var opcion = window.confirm("Esta seguro de eliminar  " + dato.id);
+        if (opcion) {
+            var contador = 0;
+            var lista = this.state.info;
+            lista.map((registro) => {
+                if (registro.id == dato.id) {
+                    lista.splice(contador, 1)
+                }
+                contador++;
+            });
+            this.setState({ info: lista });
+        }
+    }
     //editar y guradar
     editar = () => {
+        debugger
         var lista = this.state.data;
         const { tab } = this.state;
         var indexEdicion = this.state.indexEdicion;
-        if (tab.profecionPrueba == "") {
-            alert("Debe de agregar una Posición ")
+        if (tab.profecionPrueba == "" && tab.empleador == "" && tab.fechafin == "" && tab.fechainicio == "") {
+            alert("Debe de agregar una Posición o un Empleador o las Fechas ")
         }
         else if (indexEdicion >= 0 && typeof indexEdicion == "number") {
 
             lista[indexEdicion].profecionPrueba = tab.profecionPrueba;
+            lista[indexEdicion].empleador = tab.empleador;
+            lista[indexEdicion].fechafin = tab.fechafin;
+            lista[indexEdicion].fechainicio = tab.fechainicio;
+
         }
         else {
             var id = this.state.data.length + 1;
-            lista.push({ id, profecionPrueba: tab.profecionPrueba })
+            lista.push({ id, profecionPrueba: tab.profecionPrueba, empleador: tab.empleador, fechainicio: tab.fechainicio, fechafin: tab.fechafin })
         }
         this.limpiartodo()
         this.setState({ indexEdicion: null, data: lista });
+        console.log(data)
+    }
+
+    //editar y guradar
+    editaredu = () => {
+        var lista = this.state.info;
+        const { form } = this.state;
+        var indexEdicionedu = this.state.indexEdicionedu;
+        if (form.education == "" && form.institucion == "" && form.fechafinedu == "" && form.fechainicioedu == "") {
+            alert("Debe de agregar una institucion y un grado ")
+        }
+        else if (indexEdicionedu >= 0 && typeof indexEdicionedu == "number") {
+
+            lista[indexEdicionedu].education = form.education;
+            lista[indexEdicionedu].institucion = form.institucion;
+            lista[indexEdicionedu].fechafinedu = form.fechafinedu;
+            lista[indexEdicionedu].fechainicioedu = form.fechainicioedu;
+
+        }
+        else {
+            var id = this.state.info.length + 1;
+            lista.push({ id, education: form.education, institucion: form.institucion, fechainicioedu: form.fechainicioedu, fechafinedu: form.fechafinedu })
+        }
+        this.limpiartodoedu()
+        this.setState({ indexEdicionedu: null, info: lista });
         console.log(data)
     }
 
@@ -104,6 +161,12 @@ export default class Pagina extends Component {
         const { tab } = this.state;
         var indexEdicion = indexArreglo;
         this.setState({ indexEdicion, tab: { ...tab, ...dato } });
+    }
+
+    mostrareditaredu = (dato, indexArreglo) => {
+        const { form } = this.state;
+        var indexEdicionedu = indexArreglo;
+        this.setState({ indexEdicionedu, form: { ...form, ...dato } });
     }
 
 
@@ -132,34 +195,50 @@ export default class Pagina extends Component {
                     <div id="sideNavigation" className={'sidenav ' + this.state.openmenusidev ? claseopen2 : claseclose2}>
                         <a href="javascript:void(0)" className="closebtn" onClick={() => this.closeNav()} >&times;</a>
                         <div className='conteiner'>
+
+                            <b className="titul in"> Información Personal</b>
+
                             <form id="formulario" className="form-control">
-                                <label htmlFor="profile" className='letraBlanco'>Profile</label><br></br>
-                                <input onChange={this.handleChange} autocomplete="off" name="profile" id="profile" className="form-control  form-control-sm" placeholder="Perfil" type="text" value={this.state.form.profile}></input><br></br>
-
-                                <label htmlFor="BirthDate" className='letraBlanco'>Birth Date</label><br></br>
-                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.BirthDate} name="BirthDate" id="BirthDate" className="form-control  form-control-sm" placeholder="fecha Cumpleaños" type="date"></input><br></br>
-
-                                <label htmlFor="nacionalidad" className='letraBlanco'>Nacionalidad</label><br></br>
-                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.nacionalidad} name="nacionalidad" id="nacionalidad" className="form-control  form-control-sm" placeholder="Nacionalidad" type="text"></input><br></br>
-
-                                <label htmlFor="address" className='letraBlanco'>Address</label><br></br>
-                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.address} name="address" id="address" className="form-control  form-control-sm" placeholder="Address" type="text"></input><br></br>
-
-                                <label htmlFor="email" className='letraBlanco'>Email</label><br></br>
-                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.email} name="email" id="email" className="form-control  form-control-sm" placeholder="Email" type="email"></input><br></br>
-
-                                <label htmlFor="phone" className='letraBlanco'>Phone</label><br></br>
-                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.phone} name="phone" id="phone" className="form-control  form-control-sm" placeholder="Phone" type="number"></input><br></br>
-
-                                <label htmlFor="address2" className='letraBlanco'>Address</label><br></br>
-                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.address2} name="address2" id="address2" className="form-control  form-control-sm" placeholder="Address" type="text"></input><br></br>
 
                                 <label htmlFor="name" className='letraBlanco'>Name</label><br></br>
-                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.name} name="name" id="name" className="form-control  form-control-sm" placeholder="Name" type="text"></input><br></br>
-                                <hr></hr>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.name} name="name" id="name" className="form-control  form-control-sm input" placeholder="Name" type="text"></input>
+                                
+                                <label htmlFor="BirthDate" className='letraBlanco'>Birth Date</label><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.BirthDate} name="BirthDate" id="BirthDate" className="form-control  form-control-sm input" placeholder="fecha Cumpleaños" type="date"></input>
 
+                                <label htmlFor="profile" className='letraBlanco'>Profile</label><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" name="profile" id="profile" className="form-control  form-control-sm input" placeholder="Perfil" type="text" value={this.state.form.profile}></input>
+
+                                <label htmlFor="nacionalidad" className='letraBlanco'>Nacionalidad</label><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.nacionalidad} name="nacionalidad" id="nacionalidad" className="form-control  form-control-sm input" placeholder="Nacionalidad" type="text"></input>
+
+                                <label htmlFor="address" className='letraBlanco'>Address</label><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.address} name="address" id="address" className="form-control  form-control-sm input" placeholder="Address" type="text"></input>
+
+                                <label htmlFor="email" className='letraBlanco'>Email</label><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.email} name="email" id="email" className="form-control  form-control-sm input" placeholder="Email" type="email"></input>
+
+                                <label htmlFor="phone" className='letraBlanco'>Phone</label><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.phone} name="phone" id="phone" className="form-control  form-control-sm input" placeholder="Phone" type="number"></input>
+
+                                <label htmlFor="address2" className='letraBlanco'>Pagina Web</label><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.address2} name="address2" id="address2" className="form-control  form-control-sm input" placeholder="Address" type="web"></input>
+                                
+                                <label htmlFor="especialidad" className='letraBlanco'>Especialidad</label><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.especialidad} name="especialidad" id="especialidad" className="form-control  form-control-sm input" placeholder="Especialidad" type="text"></input>
+
+                                <b className="titul"> Información Laboral</b>
                                 <label htmlFor="profecionPrueba" className='letraBlanco'>Nombre Posición</label><br></br>
-                                <input onChange={this.handleChange} autocomplete="off" value={this.state.tab.profecionPrueba} name="profecionPrueba" id="profecionPrueba" className="form-control  form-control-sm" placeholder="Posición" type="text"></input>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.tab.profecionPrueba} name="profecionPrueba" id="profecionPrueba" className="form-control  form-control-sm input" placeholder="Posición" type="text"></input>
+
+                                <label htmlFor="empleador" className='letraBlanco'>Empleador</label><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.tab.empleador} name="empleador" id="empleador" className="form-control  form-control-sm input" placeholder="Empleador" type="text"></input>
+
+                                <label htmlFor="fechainicio" className='letraBlanco'>Fecha inicio</label><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.tab.fechainicio} name="fechainicio" id="fechainicio" className="form-control  form-control-sm input" placeholder="Fecha Inicio" type="date"></input>
+
+                                <label htmlFor="fechafin" className='letraBlanco'>Fecha Fin</label><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.tab.fechafin} name="fechafin" id="fechafin" className="form-control  form-control-sm input" placeholder="Fecha Fin" type="date"></input>
 
                                 <button type="button" className="btn btn-success btn-sm botones2" onClick={() => this.editar()}>Guardar</button>
                                 <button type="button" className="btn btn-warning btn-sm botones" onClick={() => this.limpiartodo()}>limpiar</button>
@@ -168,29 +247,73 @@ export default class Pagina extends Component {
                                     <thead>
                                         <tr>
                                             <th scope="col">Posición</th>
+                                            <th scope="col">Empleador</th>
+                                            <th scope="col"> Inicio</th>
+                                            <th scope="col"> Fin</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                         {this.state.data.map((e, i) => (
                                             <tr>
-                                                <td onClick={() => this.mostrareditar(e, i)}>{e.profecionPrueba}</td>
+                                                <td className=" contenidoeli" onClick={() => this.mostrareditar(e, i)}>{e.profecionPrueba}</td>
+                                                <td className=" contenidoeli" onClick={() => this.mostrareditar(e, i)}>{e.empleador}</td>
+                                                <td className=" contenidoeli" onClick={() => this.mostrareditar(e, i)}>{e.fechainicio}</td>
+                                                <td className=" contenidoeli" onClick={() => this.mostrareditar(e, i)}>{e.fechafin}</td>
+
                                                 {/*   <td><button type="button" onClick={() => this.editar(e)} className="btn btn-danger">editar</button></td>  */}
                                                 <td className="eli"><button type="button" onClick={() => this.eliminar(e)} className="btn btn-danger btn-sm ">Eliminar</button></td>
                                             </tr>
                                         ))}
                                     </tbody>
                                 </table>
+                                <b className="titul"> Educación</b>
 
-                                <label htmlFor="position2" className='letraBlanco'>Position Employe</label><br></br>
-                                <input onChange={this.handleChange} autocomplete="off" name="position2" id="position2" className="form-control  form-control-sm" placeholder="Position" type="text"></input><br></br>
+                                <label htmlFor="institucion" className='letraBlanco'>Institución</label><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.institucion} name="institucion" id="institucion" className="form-control  form-control-sm input" placeholder="Institucion" type="text"></input>
 
-                                <label htmlFor="education" className='letraBlanco'>Education</label><br></br>
-                                <input onChange={this.handleChange} autocomplete="off" name="education" id="education" className="form-control  form-control-sm" placeholder="Education" type="text"></input><br></br>
+                                <label htmlFor="education" className='letraBlanco'>Grado</label><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.education} name="education" id="education" className="form-control  form-control-sm" placeholder="Education" type="text"></input><br></br>
 
-                                <label htmlFor="education2" className='letraBlanco'>Education</label><br></br>
+                                <label htmlFor="fechainicioedu" className='letraBlanco'>Fecha inicio</label><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.fechainicioedu} name="fechainicioedu" id="fechainicioedu" className="form-control  form-control-sm input" placeholder="Fecha Inicio" type="date"></input>
+
+                                <label htmlFor="fechafinedu" className='letraBlanco'>Fecha Fin</label><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.fechafinedu} name="fechafinedu" id="fechafinedu" className="form-control  form-control-sm input" placeholder="Fecha Fin" type="date"></input>
+
+
+                                <button type="button" className="btn btn-success btn-sm botones2" onClick={() => this.editaredu()}>Guardar</button>
+                                <button type="button" className="btn btn-warning btn-sm botones" onClick={() => this.limpiartodoedu()}>limpiar</button>
+
+                                <table className="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Institución</th>
+                                            <th scope="col">Grado</th>
+                                            <th scope="col"> Inicio</th>
+                                            <th scope="col"> Fin</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {this.state.info.map((e, i) => (
+                                            <tr>
+                                                <td className=" contenidoeli" onClick={() => this.mostrareditaredu(e, i)}>{e.institucion}</td>
+                                                <td className=" contenidoeli" onClick={() => this.mostrareditaredu(e, i)}>{e.education}</td>
+                                                <td className=" contenidoeli" onClick={() => this.mostrareditaredu(e, i)}>{e.fechainicioedu}</td>
+                                                <td className=" contenidoeli" onClick={() => this.mostrareditaredu(e, i)}>{e.fechafinedu}</td>
+
+                                                {/*   <td><button type="button" onClick={() => this.editar(e)} className="btn btn-danger">editar</button></td>  */}
+                                                <td className="eli"><button type="button" onClick={() => this.eliminaredu(e)} className="btn btn-danger btn-sm ">Eliminar</button></td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                                {/*   <label htmlFor="education2" className='letraBlanco'>Education</label><br></br>
                                 <input onChange={this.handleChange} autocomplete="off" name="education2" id="education2" className="form-control  form-control-sm" placeholder="Education" type="text"></input><br></br>
-
+ */}
                             </form>
                         </div>
                     </div>
@@ -225,22 +348,22 @@ export default class Pagina extends Component {
 
 
                         <br></br><br></br>
-                        <b className="letrasmal letra2 letra">PROFILE </b><br></br>
+                        <b className="letrasmal letra2 letra tamano"><b  className="tamano">PROFILE</b> </b><br></br>
                         <p id="pprofile" className="parrafo colorgris letra letrasmal divicionletra120"> {this.state.form.profile}{/* Some representative placeholder <br></br>brcontent for the three columns<br></br> of text below the carousel. This<br></br> is the first column. */}</p><br></br>
 
-                        <b className="letrasmal letra">PERSONAL DETAIL</b><br></br><br></br>
+                        <b className="letrasmal letra tamano"><b  className="tamano">PERSONAL DETAIL</b></b><br></br><br></br>
 
-                        <h5 className="colorazul letralarge letra"><b>Birth date</b></h5>
+                        <h5 className="colorazul  letra "><b className="tamano">Birth date</b></h5>
                         <label className="letra colorgris letrasmal divicionletra120" > {this.state.form.BirthDate}{/* Enter your birth date */}</label>
 
-                        <h5 className="colorazul letralarge letra"><b>nacionalidad</b> </h5>
+                        <h5 className="colorazul  letra"><b className="tamano">Nacionalidad</b> </h5>
                         <label className="letra colorgris letrasmal divicionletra120 parrafo" > {this.state.form.nacionalidad}{/* Enter your nacionalidad */}</label>
 
-                        <h5 className="letra colorazul letralarge"><b> Address</b></h5>
+                        <h5 className="letra colorazul "><b className="tamano"> Address</b></h5>
                         <label className="letra colorgris letrasmal divicionletra120 parrafo"> {this.state.form.address}{/* Enter your Address */}</label>
 
                         <br></br><br></br>
-                        <b className="letra letrasmal"> CONCTATO</b><br></br><br></br>
+                        <b className="letra letrasmal"><b className="tamano">CONCTATO</b> </b><br></br><br></br>
                         <label className="colorgris letra fa fa-envelope-o letrasmal divicionletra120 parrafo"> {this.state.form.email} {/* Enter your email */}</label><br></br><br></br>
                         <label className="colorgris letra  fa fa-phone letrasmal divicionletra120 parrafo"> {this.state.form.phone}{/* Enter your phone */}</label><br></br><br></br>
                         <label className="colorgris letra  fa fa-globe letrasmal divicionletra120 parrafo"> {this.state.form.address2}{/* Enter your Address */}</label>
@@ -256,50 +379,52 @@ export default class Pagina extends Component {
 
 
                         <div className='derech'>
-                            <div className="container fluid letra2 cabeceraderecha" ><h1>{this.state.form.name}{/* Luis Paulino */}</h1></div>
-                            <h5 className="letra2 colorgris">YOUR PROFECCIONAL OR SPECIALITY</h5><br></br><br></br><br></br><br></br><br></br>
+                            <div className="container fluid letra2 cabeceraderecha" ><h1 className="inputnombre">{this.state.form.name}{/* Luis Paulino */}</h1></div>
+                            <h5 className="letra2 colorgris parrafo">{this.state.form.especialidad}</h5><br></br><br></br><br></br><br></br><br></br>
 
                             <div>
-                                <b className="letralarge letra2" > EXPERIENCIA PROFECIONAL</b><br></br><br></br>
-
-                                
+                                <b className="letralarge letra2"> <b>EXPERIENCIA PROFECIONAL</b></b><br></br><br></br>
 
 
+
+
+                                <div>
                                     {this.state.data.map((e) => (
                                         <ul className="ul">
-                                            <li className="colorazul "><h5 className="colorgris">{e.profecionPrueba}</h5></li>
+                                            <li className="colorazul parrafo"><h5 className="colorgris">{e.profecionPrueba}</h5></li>
                                             <div className="linea"></div>
                                             <div className="divicionletra120">
-                                                <label className="colorgris normal">Employe</label>
+                                                <label className="colorgris normal">{e.empleador}</label>
                                                 <label className="letrapequenaderecha">from-unit</label><br></br>
-                                                <p className="colorgris letrapequena2 parrafo">{e.profecionPrueba}</p>
+                                                <p className="colorgris letrapequena2 parrafo">{e.fechainicio + " - " + e.fechafin}</p>
                                                 <br></br><br></br>
                                             </div>
-                                            
                                         </ul>
-
                                     ))}
+                                </div>
 
 
-                                
+
 
                                 <br></br>
+                                <div className="edu">
+                                    <b className="letralarge letra2"><b>EDUCACIÓN</b></b>
+                                    {this.state.info.map((e) => (
+                                        <ul className="ul margen10">
+                                            <div className="linea2"></div>
+                                            <li className="colorazul"><h5 className="colorgris">{e.institucion}</h5></li>
+                                           <div className="cuboedu">
+                                           <label className="letrapequenaabajo ">from-unit</label>
+                                            <p className="parrafo colorgris"> {e.education}</p>
+                                            <p className="colorgris letrapequena2 parrafo">{e.fechainicioedu + " - " + e.fechafinedu}</p>
+                                            <br></br><br></br>
+                                           </div>
+                                        </ul>
+                                    ))}
+                                </div>
 
 
-                                <ul className="ul margen10">
 
-                                    <b className="letralarge">EDUCACIÓN</b>
-                                    <div className="linea2">
-
-                                    </div>
-                                    <li className="colorazul"><h5 className="colorgris">Degree</h5></li><label className="letrapequenaabajo " >from-unit</label>
-                                    <p className="parrafo colorgris"> {this.state.form.education}{/* School */} </p>
-                                    {/* <br><br> */}
-                                    <br></br><br></br>
-                                    <li className="colorazul"><h5 className="colorgris">Degree</h5></li><label className="letrapequenaabajo ">from-unit</label>
-                                    <p className="parrafo colorgris "> {this.state.form.education2}{/* School */}</p>
-
-                                </ul>
 
 
 
@@ -320,7 +445,7 @@ export default class Pagina extends Component {
 
                 </div>
 
-            </div>
+            </div >
 
 
 
