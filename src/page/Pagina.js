@@ -1,9 +1,12 @@
 import React, { Component } from "react";
-import {Secciones} from "../secciones/Secciones"
-import {Seccionesedu} from "../secciones/Secionesedu"
+import { Secciones } from "../secciones/Secciones"
+import { Seccionesedu } from "../secciones/Secionesedu"
+import { Seccionesotro } from "../secciones/Seccionesotro";
 
 const data = [];
 const info = [];
+const infootro = [];
+
 
 export default class Pagina extends Component {
 
@@ -12,8 +15,10 @@ export default class Pagina extends Component {
         this.state = {
             data: data,
             info: info,
+            infootro:infootro,
             indexEdicion: null,
             indexEdicionedu: null,
+            indexEdicionotro: null,
             open: false,
             form: {
                 profile: '',
@@ -28,7 +33,11 @@ export default class Pagina extends Component {
                 institucion: '',
                 fechainicioedu: '',
                 fechafinedu: '',
-                especialidad:'',
+                especialidad: '',
+                educationotro: '',
+                institucionotro: '',
+                fechainiciootro: '',
+                fechafinotro: '',
             },
             tab: {
                 id: '',
@@ -73,6 +82,11 @@ export default class Pagina extends Component {
         this.setState({ indexEdicionedu: null, form: { ...form, education: "", institucion: "", fechainicioedu: "", fechafinedu: "" } });
     }
 
+    limpiartodootro = () => {
+        const { form } = this.state;
+        this.setState({ indexEdicionotro: null, form: { ...form, educationotro: "", institucionotro: "", fechainicioeduotro: "", fechafineduotro: "" } });
+    }
+
     eliminar = (dato) => {
         var opcion = window.confirm("Esta seguro de eliminar  " + dato.id);
         if (opcion) {
@@ -89,6 +103,21 @@ export default class Pagina extends Component {
     }
 
     eliminaredu = (dato) => {
+        var opcion = window.confirm("Esta seguro de eliminar  " + dato.id);
+        if (opcion) {
+            var contador = 0;
+            var lista = this.state.info;
+            lista.map((registro) => {
+                if (registro.id == dato.id) {
+                    lista.splice(contador, 1)
+                }
+                contador++;
+            });
+            this.setState({ info: lista });
+        }
+    }
+
+    eliminarotro = (dato) => {
         var opcion = window.confirm("Esta seguro de eliminar  " + dato.id);
         if (opcion) {
             var contador = 0;
@@ -149,6 +178,28 @@ export default class Pagina extends Component {
         console.log(data)
     }
 
+    editarotro = () => {
+        var lista = this.state.infootro;
+        const { form } = this.state;
+        var indexEdicionotro = this.state.indexEdicionotro;
+        if (form.educationotro == "" && form.institucionotro == "" && form.fechafinotro == "" && form.fechainiciootro == "") {
+            alert("Debe de agregar una institución y un grado ")
+        }
+        else if (indexEdicionotro >= 0 && typeof indexEdicionotro == "number") {
+            lista[indexEdicionotro].educationotro = form.educationotro;
+            lista[indexEdicionotro].institucionotro = form.institucionotro;
+            lista[indexEdicionotro].fechafinotro = form.fechafinotro;
+            lista[indexEdicionotro].fechainiciootro = form.fechainiciootro;
+        }
+        else {
+            var id = this.state.infootro.length + 1;
+            lista.push({ id, educationotro: form.educationotro, institucionotro: form.institucionotro, fechainiciootro: form.fechainiciootro, fechafinotro: form.fechafinotro })
+        }
+        this.limpiartodoedu()
+        this.setState({ indexEdicionotro: null, infootro: lista });
+        console.log(data)
+    }
+
     mostrareditar = (dato, indexArreglo) => {
         const { tab } = this.state;
         var indexEdicion = indexArreglo;
@@ -159,6 +210,12 @@ export default class Pagina extends Component {
         const { form } = this.state;
         var indexEdicionedu = indexArreglo;
         this.setState({ indexEdicionedu, form: { ...form, ...dato } });
+    }
+
+    mostrareditarotro = (dato, indexArreglo) => {
+        const { form } = this.state;
+        var indexEdicionotro = indexArreglo;
+        this.setState({ indexEdicionotro, form: { ...form, ...dato } });
     }
 
     render() {
@@ -192,9 +249,9 @@ export default class Pagina extends Component {
 
                                 <label htmlFor="name" className='letraBlanco'>Nombre</label><br></br>
                                 <input onChange={this.handleChange} autocomplete="off" value={this.state.form.name} name="name" id="name" className="form-control  form-control-sm input" placeholder="Nombre" type="text"></input>
-                                
+
                                 <label htmlFor="BirthDate" className='letraBlanco'>Fecha Nacimineto</label><br></br>
-                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.BirthDate} name="BirthDate" id="BirthDate" className="form-control  form-control-sm input" placeholder="fecha Nacimineto" type="date"></input>
+                                <input data-date-format="dd/mm/yyyy" onChange={this.handleChange} autocomplete="off" value={this.state.form.BirthDate} name="BirthDate" id="BirthDate" className="form-control  form-control-sm input" placeholder="fecha Nacimineto" type="date"></input>
 
                                 <label htmlFor="profile" className='letraBlanco'>Descripcion Personal</label><br></br>
                                 <input onChange={this.handleChange} autocomplete="off" name="profile" id="profile" className="form-control  form-control-sm input" placeholder="Perfil" type="text" value={this.state.form.profile}></input>
@@ -216,7 +273,7 @@ export default class Pagina extends Component {
 
                                 <label htmlFor="address2" className='letraBlanco'>Pagina Web</label><br></br>
                                 <input onChange={this.handleChange} autocomplete="off" value={this.state.form.address2} name="address2" id="address2" className="form-control  form-control-sm input" placeholder="Web" type="web"></input>
-                                
+
                                 <b className="titul"> Información Laboral</b>
                                 <label htmlFor="profecionPrueba" className='letraBlanco'>Nombre Posición</label><br></br>
                                 <input onChange={this.handleChange} autocomplete="off" value={this.state.tab.profecionPrueba} name="profecionPrueba" id="profecionPrueba" className="form-control  form-control-sm input" placeholder="Posición" type="text"></input>
@@ -301,6 +358,50 @@ export default class Pagina extends Component {
                                         ))}
                                     </tbody>
                                 </table>
+
+                                <b className="titul"> Otros Estudios</b>
+
+                                <label htmlFor="institucionotro" className='letraBlanco'>Institución</label><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.institucionotro} name="institucionotro" id="institucionotro" className="form-control  form-control-sm input" placeholder="Institución" type="text"></input>
+
+                                <label htmlFor="educationotro" className='letraBlanco'>Grado</label><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.educationotro} name="educationotro" id="educationotro" className="form-control  form-control-sm" placeholder="Grado" type="text"></input><br></br>
+
+                                <label htmlFor="fechainiciootro" className='letraBlanco'>Fecha inicio</label><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.fechainiciootro} name="fechainiciootro" id="fechainiciootro" className="form-control  form-control-sm input" placeholder="Fecha Inicio" type="date"></input>
+
+                                <label htmlFor="fechafinotro" className='letraBlanco'>Fecha Fin</label><br></br>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.fechafinotro} name="fechafinotro" id="fechafinotro" className="form-control  form-control-sm input" placeholder="Fecha Fin" type="date"></input>
+
+
+                                <button type="button" className="btn btn-success btn-sm botones2" onClick={() => this.editarotro()}>Guardar</button>
+                                <button type="button" className="btn btn-warning btn-sm botones" onClick={() => this.limpiartodootro()}>limpiar</button>
+
+                                <table className="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Institución</th>
+                                            <th scope="col">Grado</th>
+                                            <th scope="col"> Inicio</th>
+                                            <th scope="col"> Fin</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {this.state.infootro.map((e, i) => (
+                                            <tr>
+                                                <td className=" contenidoeli" onClick={() => this.mostrareditaredu(e, i)}>{e.institucionotro}</td>
+                                                <td className=" contenidoeli" onClick={() => this.mostrareditaredu(e, i)}>{e.educationotro}</td>
+                                                <td className=" contenidoeli" onClick={() => this.mostrareditaredu(e, i)}>{e.fechainiciootro}</td>
+                                                <td className=" contenidoeli" onClick={() => this.mostrareditaredu(e, i)}>{e.fechafinotro}</td>
+
+                                                {/*   <td><button type="button" onClick={() => this.editar(e)} className="btn btn-danger">editar</button></td>  */}
+                                                <td className="eli"><button type="button" onClick={() => this.eliminarotro(e)} className="btn btn-danger btn-sm ">Eliminar</button></td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
                                 {/*   <label htmlFor="education2" className='letraBlanco'>Education</label><br></br>
                                 <input onChange={this.handleChange} autocomplete="off" name="education2" id="education2" className="form-control  form-control-sm" placeholder="Education" type="text"></input><br></br>
  */}
@@ -330,13 +431,13 @@ export default class Pagina extends Component {
                         </div>
 
                         <br></br><br></br>
-                        <b className="letrasmal letra2 letra tamano"><b  className="tamano">PERFIL</b> </b><br></br>
+                        <b className="letrasmal letra2 letra tamano"><b className="tamano">PERFIL</b> </b><br></br>
                         <p id="pprofile" className="parrafo colorgris letra letrasmal divicionletra120"> {this.state.form.profile}{/* Some representative placeholder <br></br>brcontent for the three columns<br></br> of text below the carousel. This<br></br> is the first column. */}</p><br></br>
 
-                        <b className="letrasmal letra tamano"><b  className="tamano">DESCIPCIÓN PERSONAL</b></b><br></br><br></br>
+                        <b className="letrasmal letra tamano"><b className="tamano">DESCIPCIÓN PERSONAL</b></b><br></br><br></br>
 
                         <h5 className="colorazul  letra "><b className="tamano">FECHA NACIMINETO</b></h5>
-                        <label className="letra colorgris letrasmal divicionletra120" > {this.state.form.BirthDate}{/* Enter your birth date */}</label>
+                        <label data-date-format="dd-mm-yyyy" className="letra colorgris letrasmal divicionletra120" > {this.state.form.BirthDate}{/* Enter your birth date */}</label>
 
                         <h5 className="colorazul  letra"><b className="tamano">NACIONALIDAD</b> </h5>
                         <label className="letra colorgris letrasmal divicionletra120 parrafo" > {this.state.form.nacionalidad}{/* Enter your nacionalidad */}</label>
@@ -367,7 +468,13 @@ export default class Pagina extends Component {
                                 <br></br>
                                 <div className="edu">
                                     <b className="letralarge letra2"><b>EDUCACIÓN</b></b>
-                                    <Seccionesedu data={this.state.info}/>
+                                    <Seccionesedu data={this.state.info} />
+                                </div>
+
+                                <br></br>
+                                <div className="edu">
+                                    <b className="letralarge letra2"><b>Otros Estudios</b></b>
+                                    <Seccionesotro data={this.state.infootro} />
                                 </div>
                             </div>
                         </div>
