@@ -95,16 +95,13 @@ export default class Pagina extends Component {
 
     editar = (dato) => {
         var contador = 0;
-        var lista = this.state.data;
-        
+        var lista = this.state.data;        
         lista.map((registro) => {
             if(dato.id == registro.id) {
                 console.log("estoydentro");
                  input=document.getElementById('profecionPrueba').value ;
                  console.log("input"+input);
-                lista[contador].profecionPrueba = input;
-                
-                
+                lista[contador].profecionPrueba = input;    
             }contador++;
            
         });
