@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useReducer } from "react";
 import { Secciones } from "../secciones/Secciones"
 import { Seccionesedu } from "../secciones/Secionesedu"
 import { Seccionesotro } from "../secciones/Seccionesotro";
 import { Fachada } from "../secciones/Fachada";
+
 
 const data = [];
 const info = [];
@@ -14,6 +15,7 @@ export default class Pagina extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            
             fachada:true,
             data: data,
             info: info,
@@ -53,6 +55,29 @@ export default class Pagina extends Component {
         }
     }
 
+    /* ObtenerLocalStorage=()=>{
+
+        var Personaform = localStorage.getItem("Personaform");
+        var Personatab = localStorage.getItem("Personatab");
+        if(Personaform == null || Personatab == null){
+            this.setState({localform:[]});
+            this.setState({localtab:[]});
+        }
+        else{
+            this.setState({localform:Personaform});
+            this.setState({localtab:Personatab});
+        }
+        
+
+    }
+
+    GuargarLocalStorage=()=>{
+        //localStorage.setItem("Persona", JSON.stringify(this.state.form,this.state.tab,))
+        this.setState({localform:localStorage.setItem("Personaform", JSON.stringify(this.state.form))})
+        this.setState({localtab:localStorage.setItem("Personatab", JSON.stringify(this.state.tab))})
+    } */
+
+
     openNav = () => {
         this.setState({ open: true })
         if(this.state.form.name==null && this.state.form.BirthDate==null && this.state.form.profile==null && this.state.form.nacionalidad==null && this.state.form.address==null   ){
@@ -64,7 +89,10 @@ export default class Pagina extends Component {
 
     closeNav = () => {
         this.setState({ open: false })
+        /* this.GuargarLocalStorage();
+        this.ObtenerLocalStorage(); */
     }
+    
 
     handleChange = e => {
         this.setState({
@@ -253,7 +281,7 @@ export default class Pagina extends Component {
 
                             <b className="titul in"> Información Personal</b>
 
-                            <form id="formulario" className="form-control">
+                            <form id="formulario" autocomplete="off" className="form-control">
 
                                 <label htmlFor="name" className='letraBlanco'>Nombre</label><br></br>
                                 <input onChange={this.handleChange} autocomplete="off"  value={this.state.form.name} name="name" id="name" className="form-control  form-control-sm input" placeholder="Nombre" type="text"></input>
@@ -428,7 +456,7 @@ export default class Pagina extends Component {
                         </a>
                     </nav>
                 </div>
-                {   this.state.fachada ?<Fachada data={this.state}/>:
+                {   this.state.fachada ? <Fachada data={this.state}/>:
                     <div className={'row ' + (this.state.open ? claseopen : claseclose)} id="fill" >
                         <div className='col-md-3'>
                             <div id="circulo" >
@@ -481,7 +509,7 @@ export default class Pagina extends Component {
 
                                     <br></br>
                                     <div className="edu">
-                                        <b className="letralarge letra2"><b>Otros Estudios</b></b>
+                                        <b className="letralarge letra2"><b>OTROS ESTUDIOS</b></b>
                                         <Seccionesotro data={this.state.infootro} />
                                     </div>
                                 </div>

@@ -35,14 +35,14 @@ export function Fachada({ }) {
             <div className='col-md-6 '>
 
                 <div className='derech'>
-                    <div className="container fluid letra2 cabeceraderecha" ><h1 className="inputnombre">{/* Luis Paulino */}</h1></div>
+                    <div className="container fluid letra2 cabeceraderecha" ><h1 className="inputnombre"> Nombre </h1></div>
                     <h5 className="letra2 colorgris parrafo"></h5><br></br><br></br><br></br><br></br><br></br>
 
                     <div>
                         <b className="letralarge letra2"> <b>EXPERIENCIA PROFECIONAL</b></b><br></br><br></br>
                         <div>
                             <ul className="ul">
-                                <li className="colorazul parrafo"><h5 className="colorgris">Profecion</h5></li>
+                                <li className="colorazul parrafo"><h5 className="colorgris">Profeción</h5></li>
                                 <div className="linea"></div>
                                 <div className="divicionletra120">
                                     <label className="colorgris normal">Empleador</label>
@@ -52,7 +52,7 @@ export function Fachada({ }) {
                                 </div>
                             </ul>
                             <ul className="ul">
-                                <li className="colorazul parrafo"><h5 className="colorgris">Profecion</h5></li>
+                                <li className="colorazul parrafo"><h5 className="colorgris">Profeción</h5></li>
                                 <div className="linea"></div>
                                 <div className="divicionletra120">
                                     <label className="colorgris normal">Empleador</label>
@@ -68,7 +68,7 @@ export function Fachada({ }) {
                             <b className="letralarge letra2"><b>EDUCACIÓN</b></b>
                             <ul className="ul margen10">
                                 <div className="linea2"></div>
-                                <li className="colorazul"><h5 className="colorgris">Institucion</h5></li>
+                                <li className="colorazul"><h5 className="colorgris">Institución</h5></li>
                                 <div className="cuboedu">
                                     <label className="letrapequenaabajo ">from-unit</label>
                                     <p className="parrafo colorgris">Grado</p>
@@ -78,7 +78,7 @@ export function Fachada({ }) {
                             </ul>
                             <ul className="ul margen10">
                                 <div className="linea2"></div>
-                                <li className="colorazul"><h5 className="colorgris">Institucion</h5></li>
+                                <li className="colorazul"><h5 className="colorgris">Institución</h5></li>
                                 <div className="cuboedu">
                                     <label className="letrapequenaabajo ">from-unit</label>
                                     <p className="parrafo colorgris">Grado</p>
@@ -93,7 +93,7 @@ export function Fachada({ }) {
                             <b className="letralarge letra2"><b>Otros Estudios</b></b>
                             <ul className="ul margen10">
                                 <div className="linea2"></div>
-                                <li className="colorazul"><h5 className="colorgris">Institucion</h5></li>
+                                <li className="colorazul"><h5 className="colorgris">Institución</h5></li>
                                 <div className="cuboedu">
                                     <label className="letrapequenaabajo ">from-unit</label>
                                     <p className="parrafo colorgris">Titulo</p>
@@ -103,7 +103,7 @@ export function Fachada({ }) {
                             </ul>
                             <ul className="ul margen10">
                                 <div className="linea2"></div>
-                                <li className="colorazul"><h5 className="colorgris">Institucion</h5></li>
+                                <li className="colorazul"><h5 className="colorgris">Institución</h5></li>
                                 <div className="cuboedu">
                                     <label className="letrapequenaabajo ">from-unit</label>
                                     <p className="parrafo colorgris">Titulo</p>
@@ -113,7 +113,7 @@ export function Fachada({ }) {
                             </ul>
                             <ul className="ul margen10">
                                 <div className="linea2"></div>
-                                <li className="colorazul"><h5 className="colorgris">Institucion</h5></li>
+                                <li className="colorazul"><h5 className="colorgris">Institución</h5></li>
                                 <div className="cuboedu">
                                     <label className="letrapequenaabajo ">from-unit</label>
                                     <p className="parrafo colorgris">Titulo</p>
