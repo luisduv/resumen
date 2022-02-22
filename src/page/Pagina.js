@@ -15,7 +15,7 @@ export default class Pagina extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            imagen:[],
             fachada: true,
             data: data,
             info: info,
@@ -42,6 +42,7 @@ export default class Pagina extends Component {
                 institucionotro: '',
                 fechainiciootro: '',
                 fechafinotro: '',
+                
             },
             tab: {
                 id: '',
@@ -93,12 +94,18 @@ export default class Pagina extends Component {
         this.ObtenerLocalStorage(); */
     }
 
+    onChangee=e=>{
+        this.setState({imagen:URL.createObjectURL(e.target.files[0])      
+        })  
+    }
+
 
     handleChange = e => {
         this.setState({
             form: {
                 ...this.state.form,
                 [e.target.name]: e.target.value,
+                
 
             },
             tab: {
@@ -292,6 +299,9 @@ export default class Pagina extends Component {
                                 <label htmlFor="profile" className='letraBlanco'>Descripcion Personal</label><br></br>
                                 <input onChange={this.handleChange} autocomplete="off" name="profile" id="profile" className="form-control  form-control-sm input" placeholder="Perfil" type="text" value={this.state.form.profile}></input>
 
+                                <label htmlFor="imagen" className='letraBlanco'>Agregar una Imagen</label><br></br>
+                                <input onChange={this.onChangee} autocomplete="off" name="imagen" id="imagen" className="form-control  form-control-sm input" placeholder="Agrega una Imagen" type="file"  value={this.state.form.imagen} ></input>
+
                                 <label htmlFor="especialidad" className='letraBlanco'>Especialidad Laboral</label><br></br>
                                 <input onChange={this.handleChange} autocomplete="off" value={this.state.form.especialidad} name="especialidad" id="especialidad" className="form-control  form-control-sm input" placeholder="Especialidad" type="text"></input>
 
@@ -459,12 +469,16 @@ export default class Pagina extends Component {
                 {/*  {   this.state.fachada ? <Fachada data={this.state}/>: */}
                 <div className={'row ' + (this.state.open ? claseopen : claseclose)} id="fill" >
                     <div className='col-md-3'>
-                        <div id="circulo" >
+                       { this.state.imagen == "" ? <div id="circulo" >
                             <div className="container fluid topecirculo">
-                                <span className=" spa fa fa-camera fa-2x"></span>
+                               { <span className=" spa fa fa-camera fa-2x"></span>}
+
                             </div>
                             <b   /* style="font-size: small;" */ id="texto"><label className="letrasmal">Select.your.picture</label></b>
-                        </div>
+                        </div> :  <div id="circulo" className="img-circle"><img className="rounded-circle imag" src={this.state.imagen}></img></div>}
+                       
+                        
+                        
 
                         <br></br><br></br>
                         <b className="letrasmal letra2 letra tamano"><b className="tamano">PERFIL</b> </b><br></br>
@@ -480,7 +494,7 @@ export default class Pagina extends Component {
 
                         <h5 className="letra colorazul "><b className="tamano"> DIRECCIÓN</b></h5>
                         <label className="letra colorgris letrasmal divicionletra120 parrafo"> {this.state.form.address || "Dirección"}{/* Enter your Address */}</label>
-
+                            
                         <br></br><br></br>
                         <b className="letra letrasmal"><b className="tamano">CONCTATO</b> </b><br></br><br></br>
                         <label className="colorgris letra fa fa-envelope-o letrasmal divicionletra120 parrafo"> {this.state.form.email || "Correo Electronico"} {/* Enter your email */}</label><br></br><br></br>
@@ -492,15 +506,15 @@ export default class Pagina extends Component {
                     <div className='col-md-6 '>
 
                         <div className='derech'>
-                            <div className="container fluid letra2 cabeceraderecha" ><h1 className="inputnombre">{this.state.form.name || 'Nombre Completo'}{/* Luis Paulino */}</h1></div>
-                            <h5 className="letra2 colorgris parrafo">{this.state.form.especialidad || "Especialidad o Profeción"}</h5><br></br><br></br><br></br><br></br><br></br>
+                            <div className="container fluid letra2 cabeceraderecha inputnombre" ><h1 className="inputnombre">{this.state.form.name || 'Nombre Completo'}{/* Luis Paulino */}</h1></div>
+                            <h5 className="letra2 colorgris parrafo">{this.state.form.especialidad || "Especialidad o Profesión"}</h5><br></br><br></br><br></br><br></br><br></br>
 
                             <div>
                                 <b className="letralarge letra2"> <b>EXPERIENCIA PROFECIONAL</b></b><br></br><br></br>
                                 <div>
                                     {this.state.data == "" ? <div>
                                         <ul className="ul">
-                                            <li className="colorazul parrafo"><h5 className="colorgris">Profeción</h5></li>
+                                            <li className="colorazul parrafo"><h5 className="colorgris">Profesión</h5></li>
                                             <div className="linea"></div>
                                             <div className="divicionletra120">
                                                 <label className="colorgris normal">Empleador</label>
@@ -510,7 +524,7 @@ export default class Pagina extends Component {
                                             </div>
                                         </ul>
                                         <ul className="ul">
-                                            <li className="colorazul parrafo"><h5 className="colorgris">Profeción</h5></li>
+                                            <li className="colorazul parrafo"><h5 className="colorgris">Profesión</h5></li>
                                             <div className="linea"></div>
                                             <div className="divicionletra120">
                                                 <label className="colorgris normal">Empleador</label>
