@@ -96,15 +96,17 @@ color: grey;
       size: 27;
        font-family: Verdana, Geneva, Tahoma, sans-serif;
        margin-left: 14px;
+      
 }
 
 .ul{
   position: relative;
+  
 }
 
 .ul.ul{
   top: 45px;
-  margin-bottom: -29px;
+  margin-bottom: -24px;
 }
 
 
@@ -127,7 +129,8 @@ color: grey;
 }
 
 .cuboedu{
-  margin-top: -21px;
+  margin-top: 0px;
+  line-height: 80%;
 }
 
 .linea2 {
@@ -158,7 +161,8 @@ color: grey;
 }
 
 .divicionletra120{
-  line-height: 115%;
+  /* line-height: 115%; */
+  line-height: 80%;
 }
 
 .colorazul{
@@ -223,6 +227,9 @@ color: grey;
 
 .inputnombre{
   overflow: hidden;
+  width: 626px;
+  margin-left: -11px;
+  
 }
 .botones2{
   margin-top: 7px;
@@ -261,6 +268,7 @@ color: grey;
 .derech{
   margin-right: 70px;
   min-height: 1000%;
+  
 }
 
 

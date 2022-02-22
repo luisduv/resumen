@@ -7,7 +7,7 @@ export function Secciones({ data} ) {
             <div className="linea"></div>
             <div className="divicionletra120">
                 <label className="colorgris normal">{e.empleador }</label>
-                <label className="letrapequenaderecha">from-unit</label><br></br>
+                <br></br><br></br>
                 <p className="colorgris letrapequena2 parrafo">{e.fechainicio   + " - " + e.fechafin }</p>
                 <br></br><br></br>
             </div>

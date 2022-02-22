@@ -127,7 +127,7 @@ export default class Pagina extends Component {
 
     limpiartodootro = () => {
         const { form } = this.state;
-        this.setState({ indexEdicionotro: null, form: { ...form, educationotro: "", institucionotro: "", fechainicioeduotro: "", fechafineduotro: "" } });
+        this.setState({ indexEdicionotro: null, form: { ...form, educationotro: "", institucionotro: "", fechainiciootro: "", fechafinotro: "" } });
     }
 
     eliminar = (dato) => {
@@ -164,14 +164,14 @@ export default class Pagina extends Component {
         var opcion = window.confirm("Esta seguro de eliminar  " + dato.id);
         if (opcion) {
             var contador = 0;
-            var lista = this.state.info;
+            var lista = this.state.infootro;
             lista.map((registro) => {
                 if (registro.id == dato.id) {
                     lista.splice(contador, 1)
                 }
                 contador++;
             });
-            this.setState({ info: lista });
+            this.setState({ infootro: lista });
         }
     }
     //editar y guradar
@@ -238,7 +238,7 @@ export default class Pagina extends Component {
             var id = this.state.infootro.length + 1;
             lista.push({ id, educationotro: form.educationotro, institucionotro: form.institucionotro, fechainiciootro: form.fechainiciootro, fechafinotro: form.fechafinotro })
         }
-        this.limpiartodoedu()
+        this.limpiartodootro()
         this.setState({ indexEdicionotro: null, infootro: lista });
         console.log(data)
     }
@@ -437,10 +437,10 @@ export default class Pagina extends Component {
 
                                         {this.state.infootro.map((e, i) => (
                                             <tr>
-                                                <td className=" contenidoeli" onClick={() => this.mostrareditaredu(e, i)}>{e.institucionotro}</td>
-                                                <td className=" contenidoeli" onClick={() => this.mostrareditaredu(e, i)}>{e.educationotro}</td>
-                                                <td className=" contenidoeli" onClick={() => this.mostrareditaredu(e, i)}>{e.fechainiciootro}</td>
-                                                <td className=" contenidoeli" onClick={() => this.mostrareditaredu(e, i)}>{e.fechafinotro}</td>
+                                                <td className=" contenidoeli" onClick={() => this.mostrareditarotro(e, i)}>{e.institucionotro}</td>
+                                                <td className=" contenidoeli" onClick={() => this.mostrareditarotro(e, i)}>{e.educationotro}</td>
+                                                <td className=" contenidoeli" onClick={() => this.mostrareditarotro(e, i)}>{e.fechainiciootro}</td>
+                                                <td className=" contenidoeli" onClick={() => this.mostrareditarotro(e, i)}>{e.fechafinotro}</td>
 
                                                 {/*   <td><button type="button" onClick={() => this.editar(e)} className="btn btn-danger">editar</button></td>  */}
                                                 <td className="eli"><button type="button" onClick={() => this.eliminarotro(e)} className="btn btn-danger btn-sm ">Eliminar</button></td>
@@ -518,7 +518,7 @@ export default class Pagina extends Component {
                                             <div className="linea"></div>
                                             <div className="divicionletra120">
                                                 <label className="colorgris normal">Empleador</label>
-                                                <label className="letrapequenaderecha">from-unit</label><br></br>
+                                                <br></br><br></br>
                                                 <p className="colorgris letrapequena2 parrafo">Fecha Inicio y fin</p>
                                                 <br></br><br></br>
                                             </div>
@@ -528,7 +528,7 @@ export default class Pagina extends Component {
                                             <div className="linea"></div>
                                             <div className="divicionletra120">
                                                 <label className="colorgris normal">Empleador</label>
-                                                <label className="letrapequenaderecha">from-unit</label><br></br>
+                                                <br></br><br></br>
                                                 <p className="colorgris letrapequena2 parrafo">Fecha Inicio y fin</p>
                                                 <br></br><br></br>
                                             </div>
@@ -547,7 +547,7 @@ export default class Pagina extends Component {
                                                 <div className="linea2"></div>
                                                 <li className="colorazul"><h5 className="colorgris">Institución</h5></li>
                                                 <div className="cuboedu">
-                                                    <label className="letrapequenaabajo ">from-unit</label>
+                                                    
                                                     <p className="parrafo colorgris">Grado</p>
                                                     <p className="colorgris letrapequena2 parrafo">Fecha Inicio y fin</p>
                                                     <br></br><br></br>
@@ -557,7 +557,7 @@ export default class Pagina extends Component {
                                                 <div className="linea2"></div>
                                                 <li className="colorazul"><h5 className="colorgris">Institución</h5></li>
                                                 <div className="cuboedu">
-                                                    <label className="letrapequenaabajo ">from-unit</label>
+                                                    
                                                     <p className="parrafo colorgris">Grado</p>
                                                     <p className="colorgris letrapequena2 parrafo">Fecha Inicio y fin</p>
                                                     <br></br><br></br>
@@ -575,7 +575,7 @@ export default class Pagina extends Component {
                                                 <div className="linea2"></div>
                                                 <li className="colorazul"><h5 className="colorgris">Institución</h5></li>
                                                 <div className="cuboedu">
-                                                    <label className="letrapequenaabajo ">from-unit</label>
+                                                    
                                                     <p className="parrafo colorgris">Titulo</p>
                                                     <p className="colorgris letrapequena2 parrafo">Fecha Inicio y fin</p>
                                                     <br></br><br></br>
@@ -585,7 +585,7 @@ export default class Pagina extends Component {
                                                 <div className="linea2"></div>
                                                 <li className="colorazul"><h5 className="colorgris">Institución</h5></li>
                                                 <div className="cuboedu">
-                                                    <label className="letrapequenaabajo ">from-unit</label>
+                                                    
                                                     <p className="parrafo colorgris">Titulo</p>
                                                     <p className="colorgris letrapequena2 parrafo">Fecha Inicio y fin</p>
                                                     <br></br><br></br>
