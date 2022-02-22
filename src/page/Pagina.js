@@ -13,7 +13,9 @@ const infootro = [];
 export default class Pagina extends Component {
 
     constructor(props) {
+        
         super(props);
+        
         this.state = {
             imagen:[],
             fachada: true,
@@ -92,6 +94,11 @@ export default class Pagina extends Component {
         this.setState({ open: false })
         /* this.GuargarLocalStorage();
         this.ObtenerLocalStorage(); */
+        var infor = this.state
+        localStorage.setItem("persona", JSON.stringify(infor));
+        this.setState({state:JSON.parse(localStorage.getItem("Piloto"))});
+       
+        
     }
 
     onChangee=e=>{
