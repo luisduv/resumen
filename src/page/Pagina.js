@@ -15,8 +15,8 @@ export default class Pagina extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            
-            fachada:true,
+
+            fachada: true,
             data: data,
             info: info,
             infootro: infootro,
@@ -80,11 +80,11 @@ export default class Pagina extends Component {
 
     openNav = () => {
         this.setState({ open: true })
-        if(this.state.form.name==null && this.state.form.BirthDate==null && this.state.form.profile==null && this.state.form.nacionalidad==null && this.state.form.address==null   ){
-            {this.setState({fachada:true})}
-        }else{
-            {this.setState({fachada:false})}
-        }
+        /*  if(this.state.form.name==null && this.state.form.BirthDate==null && this.state.form.profile==null && this.state.form.nacionalidad==null && this.state.form.address==null){
+             {this.setState({fachada:true})}
+         }else{
+             {this.setState({fachada:false})}
+         } */
     }
 
     closeNav = () => {
@@ -92,14 +92,14 @@ export default class Pagina extends Component {
         /* this.GuargarLocalStorage();
         this.ObtenerLocalStorage(); */
     }
-    
+
 
     handleChange = e => {
         this.setState({
             form: {
                 ...this.state.form,
                 [e.target.name]: e.target.value,
-                 
+
             },
             tab: {
                 ...this.state.tab,
@@ -284,7 +284,7 @@ export default class Pagina extends Component {
                             <form id="formulario" autocomplete="off" className="form-control">
 
                                 <label htmlFor="name" className='letraBlanco'>Nombre</label><br></br>
-                                <input onChange={this.handleChange} autocomplete="off"  value={this.state.form.name} name="name" id="name" className="form-control  form-control-sm input" placeholder="Nombre" type="text"></input>
+                                <input onChange={this.handleChange} autocomplete="off" value={this.state.form.name} name="name" id="name" className="form-control  form-control-sm input" placeholder="Nombre" type="text"></input>
 
                                 <label htmlFor="BirthDate" className='letraBlanco'>Fecha Nacimineto</label><br></br>
                                 <input data-date-format="dd/mm/yyyy" onChange={this.handleChange} autocomplete="off" value={this.state.form.BirthDate} name="BirthDate" id="BirthDate" className="form-control  form-control-sm input" placeholder="fecha Nacimineto" type="date"></input>
@@ -456,66 +456,133 @@ export default class Pagina extends Component {
                         </a>
                     </nav>
                 </div>
-                {   this.state.fachada ? <Fachada data={this.state}/>:
-                    <div className={'row ' + (this.state.open ? claseopen : claseclose)} id="fill" >
-                        <div className='col-md-3'>
-                            <div id="circulo" >
-                                <div className="container fluid topecirculo">
-                                    <span className=" spa fa fa-camera fa-2x"></span>
-                                </div>
-                                <b   /* style="font-size: small;" */ id="texto"><label className="letrasmal">Select.your.picture</label></b>
+                {/*  {   this.state.fachada ? <Fachada data={this.state}/>: */}
+                <div className={'row ' + (this.state.open ? claseopen : claseclose)} id="fill" >
+                    <div className='col-md-3'>
+                        <div id="circulo" >
+                            <div className="container fluid topecirculo">
+                                <span className=" spa fa fa-camera fa-2x"></span>
                             </div>
-
-                            <br></br><br></br>
-                            <b className="letrasmal letra2 letra tamano"><b className="tamano">PERFIL</b> </b><br></br>
-                            <p id="pprofile" className="parrafo colorgris letra letrasmal divicionletra120"> {this.state.form.profile}{/* Some representative placeholder <br></br>brcontent for the three columns<br></br> of text below the carousel. This<br></br> is the first column. */}</p><br></br>
-
-                            <b className="letrasmal letra tamano"><b className="tamano">DESCIPCIÓN PERSONAL</b></b><br></br><br></br>
-
-                            <h5 className="colorazul  letra "><b className="tamano">FECHA NACIMINETO</b></h5>
-                            <label data-date-format="dd-mm-yyyy" className="letra colorgris letrasmal divicionletra120" > {this.state.form.BirthDate}{/* Enter your birth date */}</label>
-
-                            <h5 className="colorazul  letra"><b className="tamano">NACIONALIDAD</b> </h5>
-                            <label className="letra colorgris letrasmal divicionletra120 parrafo" > {this.state.form.nacionalidad}{/* Enter your nacionalidad */}</label>
-
-                            <h5 className="letra colorazul "><b className="tamano"> DIRECCIÓN</b></h5>
-                            <label className="letra colorgris letrasmal divicionletra120 parrafo"> {this.state.form.address}{/* Enter your Address */}</label>
-
-                            <br></br><br></br>
-                            <b className="letra letrasmal"><b className="tamano">CONCTATO</b> </b><br></br><br></br>
-                            <label className="colorgris letra fa fa-envelope-o letrasmal divicionletra120 parrafo"> {this.state.form.email} {/* Enter your email */}</label><br></br><br></br>
-                            <label className="colorgris letra  fa fa-phone letrasmal divicionletra120 parrafo"> {this.state.form.phone}{/* Enter your phone */}</label><br></br><br></br>
-                            <label className="colorgris letra  fa fa-globe letrasmal divicionletra120 parrafo"> {this.state.form.address2}{/* Enter your Address */}</label>
-                            <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                            <b   /* style="font-size: small;" */ id="texto"><label className="letrasmal">Select.your.picture</label></b>
                         </div>
 
-                        <div className='col-md-6 '>
+                        <br></br><br></br>
+                        <b className="letrasmal letra2 letra tamano"><b className="tamano">PERFIL</b> </b><br></br>
+                        <p id="pprofile" className="parrafo colorgris letra letrasmal divicionletra120"> {this.state.form.profile || "Descripción personal"}{/* Some representative placeholder <br></br>brcontent for the three columns<br></br> of text below the carousel. This<br></br> is the first column. */}</p><br></br>
 
-                            <div className='derech'>
-                                <div className="container fluid letra2 cabeceraderecha" ><h1 className="inputnombre">{this.state.form.name}{/* Luis Paulino */}</h1></div>
-                                <h5 className="letra2 colorgris parrafo">{this.state.form.especialidad}</h5><br></br><br></br><br></br><br></br><br></br>
+                        <b className="letrasmal letra tamano"><b className="tamano">INFORMACIÓN PERSONAL</b></b><br></br><br></br>
 
+                        <h5 className="colorazul  letra "><b className="tamano">FECHA NACIMINETO</b></h5>
+                        <label data-date-format="dd-mm-yyyy" className="letra colorgris letrasmal divicionletra120" > {this.state.form.BirthDate || "Fecha Naciminento"}{/* Enter your birth date */}</label>
+
+                        <h5 className="colorazul  letra"><b className="tamano">NACIONALIDAD</b> </h5>
+                        <label className="letra colorgris letrasmal divicionletra120 parrafo" > {this.state.form.nacionalidad || "Nacionalidad "}{/* Enter your nacionalidad */}</label>
+
+                        <h5 className="letra colorazul "><b className="tamano"> DIRECCIÓN</b></h5>
+                        <label className="letra colorgris letrasmal divicionletra120 parrafo"> {this.state.form.address || "Dirección"}{/* Enter your Address */}</label>
+
+                        <br></br><br></br>
+                        <b className="letra letrasmal"><b className="tamano">CONCTATO</b> </b><br></br><br></br>
+                        <label className="colorgris letra fa fa-envelope-o letrasmal divicionletra120 parrafo"> {this.state.form.email || "Correo Electronico"} {/* Enter your email */}</label><br></br><br></br>
+                        <label className="colorgris letra  fa fa-phone letrasmal divicionletra120 parrafo"> {this.state.form.phone || "Telefono o Celular"}{/* Enter your phone */}</label><br></br><br></br>
+                        <label className="colorgris letra  fa fa-globe letrasmal divicionletra120 parrafo"> {this.state.form.address2 || "Pagina Web"}{/* Enter your Address */}</label>
+                        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                    </div>
+
+                    <div className='col-md-6 '>
+
+                        <div className='derech'>
+                            <div className="container fluid letra2 cabeceraderecha" ><h1 className="inputnombre">{this.state.form.name || 'Nombre Completo'}{/* Luis Paulino */}</h1></div>
+                            <h5 className="letra2 colorgris parrafo">{this.state.form.especialidad || "Especialidad o Profeción"}</h5><br></br><br></br><br></br><br></br><br></br>
+
+                            <div>
+                                <b className="letralarge letra2"> <b>EXPERIENCIA PROFECIONAL</b></b><br></br><br></br>
                                 <div>
-                                    <b className="letralarge letra2"> <b>EXPERIENCIA PROFECIONAL</b></b><br></br><br></br>
-                                    <div>
-                                        <Secciones data={this.state.data} />
-                                    </div>
+                                    {this.state.data == "" ? <div>
+                                        <ul className="ul">
+                                            <li className="colorazul parrafo"><h5 className="colorgris">Profeción</h5></li>
+                                            <div className="linea"></div>
+                                            <div className="divicionletra120">
+                                                <label className="colorgris normal">Empleador</label>
+                                                <label className="letrapequenaderecha">from-unit</label><br></br>
+                                                <p className="colorgris letrapequena2 parrafo">Fecha Inicio y fin</p>
+                                                <br></br><br></br>
+                                            </div>
+                                        </ul>
+                                        <ul className="ul">
+                                            <li className="colorazul parrafo"><h5 className="colorgris">Profeción</h5></li>
+                                            <div className="linea"></div>
+                                            <div className="divicionletra120">
+                                                <label className="colorgris normal">Empleador</label>
+                                                <label className="letrapequenaderecha">from-unit</label><br></br>
+                                                <p className="colorgris letrapequena2 parrafo">Fecha Inicio y fin</p>
+                                                <br></br><br></br>
+                                            </div>
+                                        </ul>
+                                    </div> : <Secciones data={this.state.data} />}
+                                </div>
 
-                                    <br></br>
-                                    <div className="edu">
-                                        <b className="letralarge letra2"><b>EDUCACIÓN</b></b>
-                                        <Seccionesedu data={this.state.info} />
-                                    </div>
 
-                                    <br></br>
-                                    <div className="edu">
-                                        <b className="letralarge letra2"><b>OTROS ESTUDIOS</b></b>
-                                        <Seccionesotro data={this.state.infootro} />
-                                    </div>
+
+                                <br></br>
+                                <div className="edu">
+                                    <b className="letralarge letra2"><b>EDUCACIÓN</b></b>
+                                    {this.state.info == "" ?
+                                        <div>
+                                            <ul className="ul margen10">
+                                                <div className="linea2"></div>
+                                                <li className="colorazul"><h5 className="colorgris">Institución</h5></li>
+                                                <div className="cuboedu">
+                                                    <label className="letrapequenaabajo ">from-unit</label>
+                                                    <p className="parrafo colorgris">Grado</p>
+                                                    <p className="colorgris letrapequena2 parrafo">Fecha Inicio y fin</p>
+                                                    <br></br><br></br>
+                                                </div>
+                                            </ul>
+                                            <ul className="ul margen10">
+                                                <div className="linea2"></div>
+                                                <li className="colorazul"><h5 className="colorgris">Institución</h5></li>
+                                                <div className="cuboedu">
+                                                    <label className="letrapequenaabajo ">from-unit</label>
+                                                    <p className="parrafo colorgris">Grado</p>
+                                                    <p className="colorgris letrapequena2 parrafo">Fecha Inicio y fin</p>
+                                                    <br></br><br></br>
+                                                </div>
+                                            </ul>
+                                        </div> : <Seccionesedu data={this.state.info} />}
+                                </div>
+
+                                <br></br>
+                                <div className="edu">
+                                    <b className="letralarge letra2"><b>OTROS ESTUDIOS</b></b>
+                                    {this.state.infootro == "" ?
+                                        <div>
+                                            <ul className="ul margen10">
+                                                <div className="linea2"></div>
+                                                <li className="colorazul"><h5 className="colorgris">Institución</h5></li>
+                                                <div className="cuboedu">
+                                                    <label className="letrapequenaabajo ">from-unit</label>
+                                                    <p className="parrafo colorgris">Titulo</p>
+                                                    <p className="colorgris letrapequena2 parrafo">Fecha Inicio y fin</p>
+                                                    <br></br><br></br>
+                                                </div>
+                                            </ul>
+                                            <ul className="ul margen10">
+                                                <div className="linea2"></div>
+                                                <li className="colorazul"><h5 className="colorgris">Institución</h5></li>
+                                                <div className="cuboedu">
+                                                    <label className="letrapequenaabajo ">from-unit</label>
+                                                    <p className="parrafo colorgris">Titulo</p>
+                                                    <p className="colorgris letrapequena2 parrafo">Fecha Inicio y fin</p>
+                                                    <br></br><br></br>
+                                                </div>
+                                            </ul>
+                                        </div> : <Seccionesotro data={this.state.infootro} />}
                                 </div>
                             </div>
                         </div>
-                    </div>}
+                    </div>
+                </div>
             </div >
         )
     }

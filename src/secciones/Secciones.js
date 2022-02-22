@@ -1,9 +1,9 @@
 
 
-export function Secciones({ data}){
-    return data.map((e) => (
+export function Secciones({ data} ) { 
+    return data.map((e) =>  (
         <ul className="ul">
-            <li className="colorazul parrafo"><h5 className="colorgris">{e.profecionPrueba }</h5></li>
+            <li className="colorazul parrafo"><h5 className="colorgris">{e.profecionPrueba}</h5></li>
             <div className="linea"></div>
             <div className="divicionletra120">
                 <label className="colorgris normal">{e.empleador }</label>
@@ -12,5 +12,5 @@ export function Secciones({ data}){
                 <br></br><br></br>
             </div>
         </ul>
-    ));
-}
+    )); 
+} 
